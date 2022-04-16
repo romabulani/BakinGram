@@ -8,7 +8,6 @@ import { theme } from "styles";
 import "assets";
 // Call make Server
 makeServer();
-console.log(theme.styles);
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>

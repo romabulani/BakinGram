@@ -5,7 +5,6 @@ import { Navigation, Home, Footer } from "components";
 function App() {
   const color = useColorModeValue("gray.800", "whiteAlpha.900");
   const bg = useColorModeValue("whiteAlpha.800", "gray.900");
-  console.log(color, bg);
   return (
     <Box color={color} bg={bg}>
       <div className="App">
