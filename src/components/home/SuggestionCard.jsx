@@ -1,18 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Flex, Image, Text } from "@chakra-ui/react";
+import { Flex, Avatar, Text } from "@chakra-ui/react";
 
 function SuggestionCard() {
   return (
     <Link to="/">
       <Flex height="fit-content" mt="4">
-        <Image
+        <Avatar
           src="https://randomuser.me/api/portraits/women/27.jpg"
           alt="profile-image"
-          boxSize="40px"
-          marginRight="8"
-          borderRadius="full"
-          objectFit="cover"
+          size="sm"
+          marginRight="2"
+          name="Adarsh Balika"
         />
         <Flex width="100%" flexDirection="column">
           <Text fontWeight="bold">Adarsh Balika</Text>
