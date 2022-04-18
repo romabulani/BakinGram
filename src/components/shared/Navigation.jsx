@@ -5,14 +5,14 @@ import {
   HStack,
   Image,
   Input,
+  Avatar,
   useColorMode,
   useColorModeValue,
-  useMediaQuery,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fontAwesomeIconStyle } from "styles";
 
 function Navigation() {
-  const [isMobile] = useMediaQuery("(max-width: 700px)");
   const { toggleColorMode, colorMode } = useColorMode();
   return (
     <Flex
@@ -37,13 +37,16 @@ function Navigation() {
             marginLeft="4"
           />
         </Link>
-        {!isMobile && (
-          <Link to="/">
-            <Heading fontSize="1.6rem" padding="1">
-              Bakin Gram
-            </Heading>
-          </Link>
-        )}
+
+        <Link to="/">
+          <Heading
+            fontSize="1.6rem"
+            padding="1"
+            display={{ base: "none", md: "block" }}
+          >
+            Bakin Gram
+          </Heading>
+        </Link>
       </Flex>
       <Flex
         border="1px solid"
@@ -51,7 +54,7 @@ function Navigation() {
         focusBorderColor="gray.600"
         borderRadius="full"
         position="relative"
-        width="17rem"
+        width="16rem"
         height="70%"
         mx="1rem"
         px="4"
@@ -68,25 +71,23 @@ function Navigation() {
           style={{ position: "absolute", right: "8px", top: "10px" }}
         />
       </Flex>
-      <HStack spacing="2">
+      <HStack spacing="2" marginLeft={{ base: "2rem", md: "0" }}>
         <FontAwesomeIcon
           icon={colorMode === "light" ? "sun" : "moon"}
           onClick={toggleColorMode}
-          style={{ cursor: "pointer", fontSize: "1.2rem", marginRight: "1rem" }}
+          style={fontAwesomeIconStyle}
         />
 
-        {!isMobile && (
-          <Link to="/">
-            <Image
-              src="https://randomuser.me/api/portraits/women/27.jpg"
-              alt="profile-image"
-              boxSize="30px"
-              marginRight="8"
-              borderRadius="full"
-              objectFit="cover"
-            />
-          </Link>
-        )}
+        <Link to="/">
+          <Avatar
+            display={{ base: "none", md: "block" }}
+            src="https://randomuser.me/api/portraits/women/27.jpg"
+            alt="profile-image"
+            size="sm"
+            marginRight="8"
+            name="Adarsh Balika"
+          />
+        </Link>
       </HStack>
     </Flex>
   );
