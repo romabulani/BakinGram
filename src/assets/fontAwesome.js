@@ -16,6 +16,9 @@ import {
   faSignOut,
   faCalendar,
   faEllipsisH,
+  faCircleExclamation,
+  faEye,
+  faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -33,7 +36,10 @@ library.add(
   faBookmark,
   faSignOut,
   faCalendar,
-  faEllipsisH
+  faEllipsisH,
+  faCircleExclamation,
+  faEye,
+  faEyeSlash
 );
 
 export { library };
