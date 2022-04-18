@@ -9,10 +9,23 @@ import {
   FormErrorMessage,
   FormLabel,
   FormControl,
+  Box,
+  IconButton,
+  InputRightElement,
+  InputGroup,
 } from "@chakra-ui/react";
+import { useState } from "react";
+import { useLoginHandler } from "hooks";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function LoginForm() {
+  const [loginData, setLoginData] = useState({ username: "", password: "" });
+  const [errorData, setErrorData] = useState(false);
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
+  const { loginHandler } = useLoginHandler();
   const navigate = useNavigate();
+
   return (
     <Flex w="100%" justifyContent="space-evenly" alignItems="center">
       <Image
@@ -32,7 +45,12 @@ function LoginForm() {
         width={{ base: "90%", md: "30%" }}
       >
         <Heading size="lg">Bakin Gram</Heading>
-        <form style={{ width: "100%" }}>
+        <form
+          style={{ width: "100%" }}
+          onSubmit={(e) =>
+            loginHandler(e, setLoginData, setErrorData, loginData)
+          }
+        >
           <FormControl
             id="user-name"
             width="100%"
@@ -46,6 +64,11 @@ function LoginForm() {
               _focus={{
                 borderColor: useColorModeValue("purple.900", "purple.300"),
               }}
+              value={loginData.username}
+              onChange={(e) =>
+                setLoginData({ ...loginData, username: e.target.value })
+              }
+              onFocus={() => setErrorData(false)}
             />
             <FormErrorMessage>Please enter email.</FormErrorMessage>
           </FormControl>
@@ -57,16 +80,32 @@ function LoginForm() {
             my="2"
           >
             <FormLabel>Password</FormLabel>
-            <Input
-              placeholder="Enter password"
-              type="password"
-              _focus={{
-                borderColor: useColorModeValue("purple.900", "purple.300"),
-              }}
-            />
+            <InputGroup size="md">
+              <Input
+                placeholder="Enter password"
+                type={show ? "text" : "password"}
+                _focus={{
+                  borderColor: useColorModeValue("purple.900", "purple.300"),
+                }}
+                value={loginData.password}
+                onChange={(e) =>
+                  setLoginData({ ...loginData, password: e.target.value })
+                }
+                onFocus={() => setErrorData(false)}
+              />
+              <InputRightElement width="4.5rem">
+                <IconButton
+                  size="sm"
+                  onClick={handleClick}
+                  variant="iconButton"
+                >
+                  <FontAwesomeIcon icon={show ? "eye" : "eye-slash"} />
+                </IconButton>
+              </InputRightElement>
+            </InputGroup>
             <FormErrorMessage>Please enter password.</FormErrorMessage>
           </FormControl>
-          <Button variant="solidPrimary" w="100%" my="2">
+          <Button variant="solidPrimary" type="submit" w="100%" my="2">
             Log In
           </Button>
           <Button
@@ -77,10 +116,17 @@ function LoginForm() {
               bg: useColorModeValue("purple.900", "purple.300"),
               color: useColorModeValue("whiteAlpha.900", "gray.900"),
             }}
+            onClick={(e) => loginHandler(e, setLoginData, setErrorData, null)}
           >
             Log In as Guest
           </Button>
         </form>
+        {errorData && (
+          <Box color="red.500">
+            <FontAwesomeIcon icon="circle-exclamation"></FontAwesomeIcon>
+            <span> Email or Password is incorrect</span>
+          </Box>
+        )}
         <Flex>
           <span>Dont have an account?</span>
           <Button
