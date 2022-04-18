@@ -56,13 +56,21 @@ function DisplayPost() {
               >
                 <FontAwesomeIcon icon="ellipsis-h" {...fontAwesomeIconStyle} />
               </MenuButton>
-              <MenuList minW="10rem">
+              <MenuList minW="8rem">
                 <MenuGroup>
-                  <MenuItem _hover={{ bg: "gray.300" }} bg="inherit">
+                  <MenuItem
+                    _hover={{ bg: "gray.300" }}
+                    bg="inherit"
+                    fontSize="md"
+                  >
                     Edit
                   </MenuItem>
                   <MenuDivider />
-                  <MenuItem _hover={{ bg: "gray.300" }} bg="inherit">
+                  <MenuItem
+                    _hover={{ bg: "gray.300" }}
+                    bg="inherit"
+                    fontSize="md"
+                  >
                     Delete{" "}
                   </MenuItem>
                 </MenuGroup>
