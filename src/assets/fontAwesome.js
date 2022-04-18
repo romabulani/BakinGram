@@ -13,6 +13,9 @@ import {
   faShareAlt,
   faBookmark,
   faMagnifyingGlass,
+  faSignOut,
+  faCalendar,
+  faEllipsisH,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -27,7 +30,10 @@ library.add(
   faSmile,
   faDotCircle,
   faShareAlt,
-  faBookmark
+  faBookmark,
+  faSignOut,
+  faCalendar,
+  faEllipsisH
 );
 
 export { library };

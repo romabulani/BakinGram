@@ -1,21 +1,27 @@
-import { Flex } from "@chakra-ui/react";
-import { NewPost, DisplayPost, Navigation, Sidebar, Footer } from "components";
+import React from "react";
+import { ProfileCard } from "./ProfileCard";
+import { Flex, Heading } from "@chakra-ui/react";
+import {
+  DisplayPost,
+  Footer,
+  Navigation,
+  Sidebar,
+  Suggestions,
+} from "components";
 import {
   flexMiddleContainerStyle,
   flexMiddleOuterContainerStyle,
 } from "styles";
-import { Suggestions } from "./Suggestions";
 
-function HeroContent() {
+function Profile() {
   return (
     <>
       <Navigation />
       <Flex {...flexMiddleOuterContainerStyle}>
         <Sidebar />
         <Flex {...flexMiddleContainerStyle}>
-          <NewPost />
-          <DisplayPost />
-          <DisplayPost />
+          <ProfileCard />
+          <Heading size="md">Your Posts</Heading>
           <DisplayPost />
           <DisplayPost />
           <DisplayPost />
@@ -28,4 +34,4 @@ function HeroContent() {
   );
 }
 
-export { HeroContent };
+export { Profile };

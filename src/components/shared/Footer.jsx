@@ -1,5 +1,6 @@
 import { Flex, HStack, Text, useColorModeValue } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fontAwesomeIconStyle } from "styles";
 function Footer() {
   return (
     <Flex
@@ -25,11 +26,7 @@ function Footer() {
         >
           <FontAwesomeIcon
             icon={["fab", "github"]}
-            style={{
-              cursor: "pointer",
-              fontSize: "1.2rem",
-              marginRight: "1rem",
-            }}
+            style={fontAwesomeIconStyle}
           ></FontAwesomeIcon>
         </a>
         <a
@@ -40,11 +37,7 @@ function Footer() {
         >
           <FontAwesomeIcon
             icon={["fab", "twitter"]}
-            style={{
-              cursor: "pointer",
-              fontSize: "1.2rem",
-              marginRight: "1rem",
-            }}
+            style={fontAwesomeIconStyle}
           ></FontAwesomeIcon>
         </a>
         <a
@@ -55,11 +48,7 @@ function Footer() {
         >
           <FontAwesomeIcon
             icon={["fab", "linkedin-in"]}
-            style={{
-              cursor: "pointer",
-              fontSize: "1.2rem",
-              marginRight: "1rem",
-            }}
+            style={fontAwesomeIconStyle}
           ></FontAwesomeIcon>
         </a>
       </HStack>

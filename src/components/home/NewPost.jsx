@@ -1,37 +1,24 @@
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Button,
   Divider,
   Flex,
   HStack,
-  Image,
+  Avatar,
   Textarea,
-  useColorModeValue,
-  useMediaQuery,
 } from "@chakra-ui/react";
+import { fontAwesomeIconStyle, postCardStyle } from "styles";
 
 function NewPost() {
-  const [isMobile] = useMediaQuery("(max-width: 700px)");
   return (
-    <Flex
-      flexDirection="column"
-      w={isMobile ? "90%" : "30rem"}
-      borderRadius="lg"
-      height="fit-content"
-      border="1px"
-      borderColor={useColorModeValue("gray.300", "gray.700")}
-      ml={isMobile ? "0" : "12"}
-      mt="4"
-    >
-      <HStack alignItems="flex-start" padding="4">
-        <Image
+    <Flex {...postCardStyle} px="4">
+      <HStack alignItems="flex-start">
+        <Avatar
           src="https://randomuser.me/api/portraits/women/27.jpg"
-          alt="profile-image"
-          boxSize="40px"
-          marginRight="8"
-          borderRadius="full"
-          objectFit="cover"
+          size="md"
+          name="Adarsh Balika"
+          marginRight="3"
+          mt="2"
         />
         <Textarea
           placeholder="Whats happening?"
@@ -47,19 +34,11 @@ function NewPost() {
         <HStack>
           <FontAwesomeIcon
             icon="image"
-            style={{
-              cursor: "pointer",
-              fontSize: "1.2rem",
-              marginRight: "1rem",
-            }}
+            style={fontAwesomeIconStyle}
           ></FontAwesomeIcon>
           <FontAwesomeIcon
             icon="smile"
-            style={{
-              cursor: "pointer",
-              fontSize: "1.2rem",
-              marginRight: "1rem",
-            }}
+            style={fontAwesomeIconStyle}
           ></FontAwesomeIcon>
         </HStack>
         <Button
