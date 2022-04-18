@@ -78,7 +78,7 @@ function Navigation() {
           style={fontAwesomeIconStyle}
         />
 
-        <Link to="/">
+        <Link to="/profile">
           <Avatar
             display={{ base: "none", md: "block" }}
             src="https://randomuser.me/api/portraits/women/27.jpg"
