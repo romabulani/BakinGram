@@ -1,23 +1,30 @@
-import React from "react";
-import { Flex, useMediaQuery } from "@chakra-ui/react";
-import { NewPost, DisplayPost } from "components";
+import { Flex } from "@chakra-ui/react";
+import { NewPost, DisplayPost, Navigation, Sidebar, Footer } from "components";
+import {
+  flexMiddleContainerStyle,
+  flexMiddleOuterContainerStyle,
+} from "styles";
+import { Suggestions } from "./Suggestions";
 
 function HeroContent() {
-  const [isMobile] = useMediaQuery("(max-width: 700px)");
   return (
-    <Flex
-      flexDirection="column"
-      alignItems="center"
-      maxW={isMobile ? "100%" : "62.5%"}
-    >
-      <NewPost />
-      <DisplayPost />
-      <DisplayPost />
-      <DisplayPost />
-      <DisplayPost />
-      <DisplayPost />
-      <DisplayPost />
-    </Flex>
+    <>
+      <Navigation />
+      <Flex {...flexMiddleOuterContainerStyle}>
+        <Sidebar />
+        <Flex {...flexMiddleContainerStyle}>
+          <NewPost />
+          <DisplayPost />
+          <DisplayPost />
+          <DisplayPost />
+          <DisplayPost />
+          <DisplayPost />
+          <DisplayPost />
+        </Flex>
+        <Suggestions />
+      </Flex>
+      <Footer />
+    </>
   );
 }
 
