@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Box, useColorModeValue } from "@chakra-ui/react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import {
   Profile,
   HeroContent,
@@ -8,6 +10,7 @@ import {
   LoginForm,
   SignupForm,
   ScrollToTop,
+  PrivateRoute,
 } from "components";
 
 function App() {
@@ -17,11 +20,46 @@ function App() {
   return (
     <Box color={color} bg={bg} className="App">
       <ScrollToTop />
+      <ToastContainer
+        theme={useColorModeValue("light", "dark")}
+        position="bottom-right"
+        autoClose={800}
+        draggable
+      />
       <Routes>
-        <Route path="/" element={<HeroContent />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/bookmarks" element={<Bookmarks />} />
-        <Route path="/notifications" element={<Notifications />} />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <HeroContent />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/bookmarks"
+          element={
+            <PrivateRoute>
+              <Bookmarks />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <PrivateRoute>
+              <Notifications />
+            </PrivateRoute>
+          }
+        />
+
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
       </Routes>

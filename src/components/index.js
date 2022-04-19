@@ -15,3 +15,4 @@ export { SignupForm } from "./authentication/SignupForm";
 export { ScrollToTop } from "./shared/ScrollToTop";
 export { UpdateProfileForm } from "./profile/UpdateProfileForm";
 export { PostModal } from "./home/PostModal";
+export { PrivateRoute } from "./authentication/PrivateRoute";

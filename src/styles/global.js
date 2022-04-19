@@ -50,5 +50,5 @@ export const flexMiddleOuterContainerStyle = {
 export const fontAwesomeIconStyle = {
   cursor: "pointer",
   fontSize: "1.2rem",
-  marginRight: "1rem",
+  marginright: "1rem",
 };
