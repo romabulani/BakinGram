@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import {
   Flex,
   Box,
@@ -13,26 +11,12 @@ import {
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { postCardStyle } from "styles";
-import { UpdateProfileForm } from "components";
-import { useAuth } from "contexts";
-import { useEffect } from "react";
+import { UpdateProfileForm, logoutUser } from "features";
+import { useDispatch, useSelector } from "react-redux";
 
 function ProfileCard() {
-  const { setAuthToken, authUser, setAuthUser } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (localStorage.authUser) setAuthUser(JSON.parse(localStorage.authUser));
-  }, []);
-
-  function logoutHandler() {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("authUser");
-    toast.success("Logout successful");
-    setAuthToken("");
-    setAuthUser(null);
-    navigate("/");
-  }
+  const dispatch = useDispatch();
+  const { authUser } = useSelector((state) => state.authentication);
 
   return (
     <Flex {...postCardStyle} boxShadow="none">
@@ -54,7 +38,7 @@ function ProfileCard() {
                 <IconButton
                   variant="iconButton"
                   icon={<FontAwesomeIcon icon="sign-out" />}
-                  onClick={logoutHandler}
+                  onClick={() => dispatch(logoutUser())}
                 />
               </Tooltip>
             </Flex>

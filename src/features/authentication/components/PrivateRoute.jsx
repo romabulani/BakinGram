@@ -1,16 +1,11 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { useAuth } from "contexts";
-import { HeroContent } from "components";
+import { useSelector } from "react-redux";
 
 function PrivateRoute({ children }) {
-  const { authToken } = useAuth();
+  const { authToken } = useSelector((state) => state.authentication);
   const location = useLocation();
   return authToken ? (
-    children ? (
-      children
-    ) : (
-      <HeroContent />
-    )
+    children
   ) : (
     <Navigate to="/login" state={{ from: location }} replace />
   );

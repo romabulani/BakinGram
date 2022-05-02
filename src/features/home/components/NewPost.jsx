@@ -26,6 +26,7 @@ function NewPost() {
           width="100%"
           outline="none"
           border="none"
+          resize="none"
           focusBorderColor="transparent"
         ></Textarea>
       </HStack>

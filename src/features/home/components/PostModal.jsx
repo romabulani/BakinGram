@@ -21,8 +21,24 @@ function PostModal() {
   const { isOpen, onClose, onOpen } = useDisclosure();
   return (
     <>
-      <Button variant="solidPrimary" margin="1rem" w="85%" onClick={onOpen}>
+      <Button
+        variant="solidPrimary"
+        margin="1rem"
+        w="85%"
+        onClick={onOpen}
+        display={{ base: "none", md: "block" }}
+      >
         Post
+      </Button>
+      <Button
+        variant="iconButton"
+        display={{ base: "block", md: "none" }}
+        height="1.5rem"
+        bottom="7px"
+        onClick={onOpen}
+        color={useColorModeValue("gray.800", "whiteAlpha.800")}
+      >
+        <FontAwesomeIcon icon="plus-circle" />
       </Button>
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="md" m="2">
         <ModalOverlay />
@@ -50,6 +66,7 @@ function PostModal() {
                 outline="none"
                 border="none"
                 focusBorderColor="transparent"
+                resize="none"
               ></Textarea>
             </Flex>
           </ModalBody>

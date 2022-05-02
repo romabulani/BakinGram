@@ -1,32 +1,26 @@
-import { Flex, Heading } from "@chakra-ui/react";
-import {
-  DisplayPost,
-  Footer,
-  Navigation,
-  Sidebar,
-  Suggestions,
-} from "components";
+import { Flex } from "@chakra-ui/react";
+import { NewPost, DisplayPost, Suggestions } from "features";
 import {
   flexMiddleContainerStyle,
   flexMiddleOuterContainerStyle,
 } from "styles";
+import { Navigation, Footer, Sidebar } from "components";
 
-function Bookmarks() {
+function HeroContent() {
   return (
     <>
       <Navigation />
       <Flex {...flexMiddleOuterContainerStyle}>
         <Sidebar />
         <Flex {...flexMiddleContainerStyle}>
-          <Heading size="md" mt="4">
-            Bookmarks
-          </Heading>
+          <NewPost />
+          <DisplayPost />
+          <DisplayPost />
           <DisplayPost />
           <DisplayPost />
           <DisplayPost />
           <DisplayPost />
         </Flex>
-
         <Suggestions />
       </Flex>
       <Footer />
@@ -34,4 +28,4 @@ function Bookmarks() {
   );
 }
 
-export { Bookmarks };
+export { HeroContent };

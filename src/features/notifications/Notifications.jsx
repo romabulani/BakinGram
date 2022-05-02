@@ -1,6 +1,7 @@
 import { Flex, Avatar, Divider, Text } from "@chakra-ui/react";
 import { flexMiddleOuterContainerStyle, postCardStyle } from "styles";
-import { Footer, Navigation, Sidebar, Suggestions } from "components";
+import { Suggestions } from "features";
+import { Footer, Navigation, Sidebar } from "components";
 
 function Notifications() {
   return (

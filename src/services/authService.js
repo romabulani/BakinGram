@@ -12,7 +12,7 @@ const postLoginData = async (username, password) => {
       return response.data;
     } else throw new Error();
   } catch (e) {
-    toast.error(`Couldn't Login! Please try again.`);
+    toast.error(`Incorrect username or password`);
     console.error("postLoginData: Error in Login", e);
   }
 };

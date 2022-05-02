@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Flex,
   Heading,
@@ -18,15 +18,19 @@ import {
   inputRightWrapperStyle,
   inputWrapperStyle,
 } from "styles";
-import { useSignupHandler } from "hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSignupHandler } from "../hooks";
+import { useSelector } from "react-redux";
 
 function SignupForm() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+  const { authToken } = useSelector((state) => state.authentication);
   const { formData, formDispatch, errorData, errorDispatch, signUpHandler } =
     useSignupHandler();
+
+  useEffect(() => authToken && navigate("/"), [authToken, navigate]);
   return (
     <Flex justifyContent="center">
       <Flex
@@ -40,7 +44,11 @@ function SignupForm() {
       >
         <Heading size="lg">Bakin Gram</Heading>
         <Heading size="md">SIGN UP</Heading>
-        <form style={{ width: "100%" }} onSubmit={(e) => signUpHandler(e)}>
+        <form
+          style={{ width: "100%" }}
+          onSubmit={(e) => signUpHandler(e)}
+          noValidate
+        >
           <FormControl
             id="first-name"
             width="100%"

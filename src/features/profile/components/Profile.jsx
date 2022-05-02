@@ -1,13 +1,7 @@
 import React from "react";
-import { ProfileCard } from "./ProfileCard";
 import { Flex, Heading } from "@chakra-ui/react";
-import {
-  DisplayPost,
-  Footer,
-  Navigation,
-  Sidebar,
-  Suggestions,
-} from "components";
+import { DisplayPost, Suggestions, ProfileCard } from "features";
+import { Footer, Navigation, Sidebar } from "components";
 import {
   flexMiddleContainerStyle,
   flexMiddleOuterContainerStyle,

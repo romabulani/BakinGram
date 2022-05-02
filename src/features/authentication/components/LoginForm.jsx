@@ -15,16 +15,48 @@ import {
   InputGroup,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { useLoginHandler } from "hooks";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { loginUser } from "../authenticationSlice";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 function LoginForm() {
   const [loginData, setLoginData] = useState({ username: "", password: "" });
   const [errorData, setErrorData] = useState(false);
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-  const { loginHandler } = useLoginHandler();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { authToken } = useSelector((state) => state.authentication);
+
+  useEffect(() => authToken && navigate("/"), [authToken, navigate]);
+
+  const loginHandler = (e) => {
+    e.preventDefault();
+    if (e && e.target.innerText === "Log In as Guest") {
+      setLoginData({
+        username: "adarshbalika",
+        password: "adarshBalika123",
+      });
+      dispatch(
+        loginUser({
+          username: "adarshbalika",
+          password: "adarshBalika123",
+        })
+      );
+    } else {
+      if (loginData.username.trim() === "" || loginData.password.trim() === "")
+        toast.error("Incorrect username or password");
+      else
+        dispatch(
+          loginUser({
+            username: loginData.username,
+            password: loginData.password,
+          })
+        );
+    }
+  };
 
   return (
     <Flex w="100%" justifyContent="space-evenly" alignItems="center">
@@ -45,12 +77,7 @@ function LoginForm() {
         width={{ base: "90%", md: "30%" }}
       >
         <Heading size="lg">Bakin Gram</Heading>
-        <form
-          style={{ width: "100%" }}
-          onSubmit={(e) =>
-            loginHandler(e, setLoginData, setErrorData, loginData)
-          }
-        >
+        <form style={{ width: "100%" }} onSubmit={loginHandler} noValidate>
           <FormControl
             id="user-name"
             width="100%"

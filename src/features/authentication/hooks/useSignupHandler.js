@@ -1,6 +1,6 @@
 import { useReducer } from "react";
-import { postSignupData } from "services";
-import { useLoginHandler } from "./useLoginHandler";
+import { useDispatch } from "react-redux";
+import { signupUser } from "../authenticationSlice";
 
 function useSignupHandler() {
   const initialFormState = {
@@ -84,6 +84,7 @@ function useSignupHandler() {
     initialErrorState
   );
   const [formData, formDispatch] = useReducer(formReducer, initialFormState);
+  const dispatch = useDispatch();
 
   const checkValidation = () => {
     let signupFlag = true;
@@ -133,18 +134,11 @@ function useSignupHandler() {
 
     return signupFlag;
   };
-  const { loginHandler } = useLoginHandler();
+  // const { loginHandler } = useLoginHandler();
 
-  const signUpHandler = async (e) => {
+  const signUpHandler = (e) => {
     e.preventDefault();
-    if (checkValidation()) {
-      const response = await postSignupData(formData);
-      if (response && response.status === 201)
-        loginHandler(null, null, null, {
-          username: formData.username,
-          password: formData.password,
-        });
-    }
+    if (checkValidation()) dispatch(signupUser(formData));
   };
 
   return { formData, formDispatch, errorData, errorDispatch, signUpHandler };
