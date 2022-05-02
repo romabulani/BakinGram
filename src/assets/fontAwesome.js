@@ -19,6 +19,7 @@ import {
   faCircleExclamation,
   faEye,
   faEyeSlash,
+  faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -39,7 +40,8 @@ library.add(
   faEllipsisH,
   faCircleExclamation,
   faEye,
-  faEyeSlash
+  faEyeSlash,
+  faPlusCircle
 );
 
 export { library };
