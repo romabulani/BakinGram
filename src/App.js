@@ -9,9 +9,9 @@ import {
   Notifications,
   LoginForm,
   SignupForm,
-  ScrollToTop,
   PrivateRoute,
-} from "components";
+} from "features";
+import { NotFound, ScrollToTop } from "components";
 
 function App() {
   const color = useColorModeValue("gray.800", "whiteAlpha.900");
@@ -62,6 +62,7 @@ function App() {
 
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Box>
   );
