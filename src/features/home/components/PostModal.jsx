@@ -15,10 +15,12 @@ import {
   Avatar,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSelector } from "react-redux";
 import { fontAwesomeIconStyle } from "styles";
 
 function PostModal() {
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const { authUser } = useSelector((state) => state.authentication);
   return (
     <>
       <Button
@@ -54,9 +56,9 @@ function PostModal() {
           <ModalBody>
             <Flex>
               <Avatar
-                src="https://randomuser.me/api/portraits/women/27.jpg"
+                src={authUser.avatarUrl}
                 size="md"
-                name="Adarsh Balika"
+                name={`${authUser.firstName} ${authUser.lastName}`}
                 marginRight="3"
                 mt="2"
               />

@@ -2,20 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Flex, Avatar, Text } from "@chakra-ui/react";
 
-function SuggestionCard() {
+function SuggestionCard({ user }) {
   return (
-    <Link to="/">
+    <Link to={`/profile/${user.username}`}>
       <Flex height="fit-content" mt="4">
         <Avatar
-          src="https://randomuser.me/api/portraits/women/27.jpg"
+          src={user.avatarUrl}
           alt="profile-image"
           size="sm"
           marginRight="2"
-          name="Adarsh Balika"
+          name={`${user.firstName} ${user.lastName}`}
         />
         <Flex width="100%" flexDirection="column">
-          <Text fontWeight="bold">Adarsh Balika</Text>
-          <Text marginTop="0px">{`@adarshbalika`}</Text>
+          <Text fontWeight="bold">{`${user.firstName} ${user.lastName}`}</Text>
+          <Text marginTop="0px">@{user.username}</Text>
         </Flex>
       </Flex>
     </Link>
