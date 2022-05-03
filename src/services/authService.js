@@ -1,37 +1,26 @@
 import axios from "axios";
-import { toast } from "react-toastify";
 
-const postLoginData = async (username, password) => {
-  try {
-    const response = await axios.post("/api/auth/login", {
-      username,
-      password,
-    });
-    if (response.status === 200) {
-      toast.success("Log In successful");
-      return response.data;
-    } else throw new Error();
-  } catch (e) {
-    toast.error(`Incorrect username or password`);
-    console.error("postLoginData: Error in Login", e);
-  }
-};
+const postLoginData = async (username, password) =>
+  axios.post("/api/auth/login", {
+    username,
+    password,
+  });
 
-const postSignupData = async (formData) => {
-  let response;
-  try {
-    response = await axios.post("/api/auth/signup", formData);
-    if (response.status === 201) {
-      toast.success("Sign up successful.");
-      return response;
+const postSignupData = async (formData) =>
+  await axios.post("/api/auth/signup", {
+    ...formData,
+    bio: "",
+    website: "",
+    avatarURL: "",
+  });
+
+const editUser = async (userData, authorization) =>
+  await axios.post(
+    "/api/users/edit",
+    { userData },
+    {
+      headers: { authorization },
     }
-  } catch (e) {
-    if (e.response.status === 422) toast.error("Username is already taken");
-    else {
-      toast.error(`Couldn't Signup! Please try again.`);
-      console.error("signUpHandler : Error in signing up", e);
-    }
-  }
-};
+  );
 
-export { postLoginData, postSignupData };
+export { postLoginData, postSignupData, editUser };
