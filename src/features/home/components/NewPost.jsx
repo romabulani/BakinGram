@@ -8,15 +8,17 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { fontAwesomeIconStyle, postCardStyle } from "styles";
+import { useSelector } from "react-redux";
 
 function NewPost() {
+  const { authUser } = useSelector((state) => state.authentication);
   return (
     <Flex {...postCardStyle} px="4">
       <HStack alignItems="flex-start">
         <Avatar
-          src="https://randomuser.me/api/portraits/women/27.jpg"
+          src={authUser.avatarUrl}
           size="md"
-          name="Adarsh Balika"
+          name={`${authUser.firstName} ${authUser.lastName}`}
           marginRight="3"
           mt="2"
         />

@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Heading } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { DisplayPost, Suggestions, ProfileCard } from "features";
 import { Footer, Navigation, Sidebar } from "components";
 import {
@@ -15,7 +15,6 @@ function Profile() {
         <Sidebar />
         <Flex {...flexMiddleContainerStyle}>
           <ProfileCard />
-          <Heading size="md">Your Posts</Heading>
           <DisplayPost />
           <DisplayPost />
           <DisplayPost />

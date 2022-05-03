@@ -16,13 +16,13 @@ export const getAllUsersHandler = function () {
 
 /**
  * This handler handles get a user from userId in the db.
- * send GET Request at /api/users/:userId
+ * send GET Request at /api/users/:username
  * */
 
 export const getUserHandler = function (schema, request) {
-  const userId = request.params.userId;
+  const username = request.params.username;
   try {
-    const user = schema.users.findBy({ _id: userId }).attrs;
+    const user = schema.users.findBy({ username: username }).attrs;
     return new Response(200, {}, { user });
   } catch (error) {
     return new Response(

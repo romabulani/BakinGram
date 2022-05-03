@@ -1,1 +1,2 @@
-export { postLoginData, postSignupData } from "./authService";
+export * from "./authService";
+export * from "./userService";
