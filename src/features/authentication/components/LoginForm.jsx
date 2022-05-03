@@ -17,7 +17,7 @@ import {
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { loginUser } from "../authenticationSlice";
+import { loginUser } from "features";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 

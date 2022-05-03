@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import { useDispatch } from "react-redux";
-import { signupUser } from "../authenticationSlice";
+import { signupUser } from "features";
 
 function useSignupHandler() {
   const initialFormState = {

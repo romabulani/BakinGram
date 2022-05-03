@@ -13,7 +13,6 @@ export { SignupForm } from "./authentication/components/SignupForm";
 export { UpdateProfileForm } from "./profile/components/UpdateProfileForm";
 export { PostModal } from "./home/components/PostModal";
 export { PrivateRoute } from "./authentication/components/PrivateRoute";
-export {
-  authenticationReducer,
-  logoutUser,
-} from "./authentication/authenticationSlice";
+export * from "./authentication/authenticationSlice";
+export * from "./home/usersSlice";
+export * from "./profile/profileSlice";
