@@ -11,9 +11,11 @@ import {
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fontAwesomeIconStyle } from "styles";
+import { useSelector } from "react-redux";
 
 function Navigation() {
   const { toggleColorMode, colorMode } = useColorMode();
+  const { authUser } = useSelector((state) => state.authentication);
   return (
     <Flex
       width="100%"
@@ -78,14 +80,14 @@ function Navigation() {
           style={fontAwesomeIconStyle}
         />
 
-        <Link to="/profile">
+        <Link to={`/profile/${authUser.username}`}>
           <Avatar
             display={{ base: "none", md: "block" }}
-            src="https://randomuser.me/api/portraits/women/27.jpg"
+            src={authUser.avatarUrl}
             alt="profile-image"
             size="sm"
             marginRight="8"
-            name="Adarsh Balika"
+            name={authUser.firstName + authUser.lastName}
           />
         </Link>
       </HStack>

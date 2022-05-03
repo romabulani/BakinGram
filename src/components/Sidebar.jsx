@@ -3,8 +3,10 @@ import { Flex, Text, useColorModeValue, Box, Avatar } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { sidebarStyle } from "styles";
 import { PostModal } from "features";
+import { useSelector } from "react-redux";
 
 function Sidebar() {
+  const { authUser } = useSelector((state) => state.authentication);
   const getActiveStyle = ({ isActive }) =>
     isActive
       ? {
@@ -36,7 +38,7 @@ function Sidebar() {
           <NavLink to="/bookmarks" style={getActiveStyle}>
             {getNavItem("bookmark", "Bookmarks")}
           </NavLink>
-          <NavLink to="/profile" style={getActiveStyle}>
+          <NavLink to={`/profile/${authUser.username}`} style={getActiveStyle}>
             {getNavItem("user", "Profile")}
           </NavLink>
           <PostModal />
@@ -64,12 +66,12 @@ function Sidebar() {
         <Link to="/bookmarks">
           <FontAwesomeIcon icon="bookmark" />
         </Link>
-        <Link to="/profile">
+        <Link to={`/profile/${authUser.username}`}>
           <Avatar
-            src="https://randomuser.me/api/portraits/women/27.jpg"
+            src={authUser.avatarUrl}
             alt="profile-image"
             size="xs"
-            name="Adarsh Balika"
+            name={authUser.firstName + authUser.lastName}
           />
         </Link>
       </Flex>
