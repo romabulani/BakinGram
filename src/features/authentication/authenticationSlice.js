@@ -1,15 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import { postLoginData, postSignupData } from "services";
+import { editUser, postLoginData, postSignupData } from "services";
 
 export const loginUser = createAsyncThunk(
   "authenticate/loginUser",
   async ({ username, password }, { rejectWithValue }) => {
     try {
       const loginResponse = await postLoginData(username, password);
-      return loginResponse;
+      return loginResponse.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      toast.error(`Incorrect username or password`);
+      return rejectWithValue(error);
     }
   }
 );
@@ -21,7 +22,20 @@ export const signupUser = createAsyncThunk(
       const signupResponse = await postSignupData(userDetails);
       return signupResponse.data;
     } catch (error) {
+      toast.error(`Couldn't Signup! Please try again.`);
       return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const editUserProfile = createAsyncThunk(
+  "authenticate/editUserProfile",
+  async (userObj, { rejectWithValue }) => {
+    try {
+      const resp = await editUser(userObj.userDetails, userObj.authToken);
+      return resp.data;
+    } catch (error) {
+      rejectWithValue(error);
     }
   }
 );
@@ -31,6 +45,7 @@ const initialState = {
   authUser: JSON.parse(localStorage.getItem("authUser")) ?? {},
   authStatus: "idle",
   error: null,
+  editProfileStatus: "idle",
 };
 
 const authenticationSlice = createSlice({
@@ -61,6 +76,7 @@ const authenticationSlice = createSlice({
     [loginUser.rejected]: (state, action) => {
       state.authStatus = "Error";
       state.error = action.payload;
+      console.error(action);
     },
     [signupUser.pending]: (state) => {
       state.authStatus = "pending";
@@ -72,8 +88,13 @@ const authenticationSlice = createSlice({
       localStorage.setItem("authToken", state.authToken);
       localStorage.setItem("authUser", JSON.stringify(state.authUser));
     },
-    [signupUser.rejected]: (state, action) => {
-      state.authStatus = "Error";
+    [editUserProfile.pending]: (state, action) => {
+      state.editProfileStatus = "pending";
+    },
+    [editUserProfile.fulfilled]: (state, action) => {
+      state.authUser = action.payload.user;
+    },
+    [editUserProfile.rejected]: (state, action) => {
       state.error = action.payload;
     },
   },
