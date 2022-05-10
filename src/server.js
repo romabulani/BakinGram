@@ -90,6 +90,8 @@ export function makeServer({ environment = "development" } = {}) {
       this.passthrough();
       this.passthrough(
         "https://api.cloudinary.com/v1_1/dtrjdcrme/image/upload",
+        "https://api.cloudinary.com/v1_1/dtrjdcrme/video/upload",
+        "https://api.cloudinary.com/v1_1/dtrjdcrme/delete_by_token",
         ["post"]
       );
     },

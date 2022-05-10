@@ -9,7 +9,11 @@ function Notifications() {
       <Navigation />
       <Flex {...flexMiddleOuterContainerStyle}>
         <Sidebar />
-        <Flex {...postCardStyle} boxShadow="none">
+        <Flex
+          {...postCardStyle}
+          boxShadow="none"
+          w={{ base: "90vw", md: "30rem" }}
+        >
           <Flex w="100%" marginTop="1" padding="2" alignItems="center">
             <Avatar
               src="https://randomuser.me/api/portraits/women/27.jpg"

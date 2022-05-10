@@ -30,12 +30,12 @@ export const signupUser = createAsyncThunk(
 
 export const editUserProfile = createAsyncThunk(
   "authenticate/editUserProfile",
-  async (userObj, { rejectWithValue }) => {
+  async ({ userDetails, authToken }, { rejectWithValue }) => {
     try {
-      const resp = await editUser(userObj.userDetails, userObj.authToken);
+      const resp = await editUser(userDetails, authToken);
       return resp.data;
     } catch (error) {
-      rejectWithValue(error);
+      rejectWithValue(error.response.data);
     }
   }
 );
@@ -44,7 +44,7 @@ const initialState = {
   authToken: localStorage.getItem("authToken") ?? "",
   authUser: JSON.parse(localStorage.getItem("authUser")) ?? {},
   authStatus: "idle",
-  error: null,
+  authError: null,
   editProfileStatus: "idle",
 };
 
@@ -58,7 +58,7 @@ const authenticationSlice = createSlice({
       state.authToken = null;
       state.authUser = null;
       state.authStatus = "idle";
-      state.error = null;
+      state.authError = null;
       toast.success("Logout successful");
     },
   },
@@ -75,8 +75,7 @@ const authenticationSlice = createSlice({
     },
     [loginUser.rejected]: (state, action) => {
       state.authStatus = "Error";
-      state.error = action.payload;
-      console.error(action);
+      state.authError = action.payload;
     },
     [signupUser.pending]: (state) => {
       state.authStatus = "pending";
@@ -95,7 +94,7 @@ const authenticationSlice = createSlice({
       state.authUser = action.payload.user;
     },
     [editUserProfile.rejected]: (state, action) => {
-      state.error = action.payload;
+      state.authError = action.payload;
     },
   },
 });

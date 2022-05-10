@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { logoutUser } from "features";
-import { editUser, getAllUsers } from "services";
+import { getAllUsers } from "services";
 
 export const getUsers = createAsyncThunk("/users/getUsers", async () => {
   try {
-    const suggestions = await getAllUsers();
-    return suggestions.data.users;
+    const response = await getAllUsers();
+    return response.data.users;
   } catch (error) {
     console.error(error);
   }

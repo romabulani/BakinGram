@@ -16,3 +16,5 @@ export { PrivateRoute } from "./authentication/components/PrivateRoute";
 export * from "./authentication/authenticationSlice";
 export * from "./home/usersSlice";
 export * from "./profile/profileSlice";
+export * from "./home/postsSlice";
+export { EditPostModal } from "./home/components/EditPostModal";

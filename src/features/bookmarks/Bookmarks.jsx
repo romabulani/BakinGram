@@ -5,8 +5,10 @@ import {
   flexMiddleContainerStyle,
   flexMiddleOuterContainerStyle,
 } from "styles";
+import { useSelector } from "react-redux";
 
 function Bookmarks() {
+  const { posts } = useSelector((state) => state.posts);
   return (
     <>
       <Navigation />
@@ -16,10 +18,9 @@ function Bookmarks() {
           <Heading size="md" mt="4">
             Bookmarks
           </Heading>
-          <DisplayPost />
-          <DisplayPost />
-          <DisplayPost />
-          <DisplayPost />
+          {posts.map((post) => (
+            <DisplayPost key={post._id} post={post} />
+          ))}
         </Flex>
 
         <Suggestions />
