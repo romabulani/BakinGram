@@ -29,7 +29,11 @@ function ProfileCard() {
   return (
     <>
       {profileDetails && (
-        <Flex {...postCardStyle} boxShadow="none">
+        <Flex
+          {...postCardStyle}
+          boxShadow="none"
+          w={{ base: "90vw", md: "30rem" }}
+        >
           <Flex w="100%" marginTop="1" padding="2">
             <Avatar
               src={profileDetails.avatarUrl}
