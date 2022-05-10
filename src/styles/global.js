@@ -1,11 +1,16 @@
 export const postCardStyle = {
   flexDirection: "column",
-  w: { base: "90vw", md: "30rem" },
   borderRadius: "lg",
   height: "fit-content",
-  ml: { base: "0", md: 12 },
   px: "2",
+  py: "2",
   my: "4",
+};
+
+export const displayCardStyle = {
+  w: { base: "90vw", md: "30rem" },
+  mt: "4",
+  pos: "relative",
   boxShadow: "rgb(0 0 0 / 5%) 0px 0px 10px 4px",
 };
 

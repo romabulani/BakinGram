@@ -42,7 +42,12 @@ const styles = {
       bg: props.colorMode === "light" ? "purple.700" : "purple.200",
       fontSize: "xl",
       fontWeight: "semibold",
-      _hover: { bg: props.colorMode === "light" ? "purple.900" : "purple.300" },
+      _hover: {
+        bg: props.colorMode === "light" ? "purple.900" : "purple.300",
+      },
+      _disabled_hover: {
+        bg: "unset",
+      },
       borderColor: props.colorMode === "light" ? "purple.700" : "purple.200",
     },
 
