@@ -6,39 +6,28 @@ import {
   ModalHeader,
   ModalContent,
   useDisclosure,
-  Button,
   useColorModeValue,
+  MenuItem,
 } from "@chakra-ui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NewPost } from "./NewPost";
 
-function PostModal() {
+function EditPostModal({ post }) {
   const { isOpen, onClose, onOpen } = useDisclosure();
   return (
     <>
-      <Button
-        variant="solidPrimary"
-        margin="1rem"
-        w="85%"
+      <MenuItem
+        _hover={{ bg: "gray.300" }}
+        bg="inherit"
+        fontSize="md"
         onClick={onOpen}
-        display={{ base: "none", md: "block" }}
       >
-        Post
-      </Button>
-      <Button
-        variant="iconButton"
-        display={{ base: "block", md: "none" }}
-        height="1.5rem"
-        bottom="7px"
-        onClick={onOpen}
-        color={useColorModeValue("gray.800", "whiteAlpha.800")}
-      >
-        <FontAwesomeIcon icon="plus-circle" />
-      </Button>
+        Edit
+      </MenuItem>
+
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="md" m="2">
         <ModalOverlay />
         <ModalContent w={{ base: "90vw", md: "30rem" }}>
-          <ModalHeader>New Post</ModalHeader>
+          <ModalHeader>Edit Post</ModalHeader>
           <ModalCloseButton
             bg="transparent"
             color={useColorModeValue("gray.700", "white.900")}
@@ -47,7 +36,12 @@ function PostModal() {
             }}
           />
           <ModalBody maxW="100%">
-            <NewPost width="100%" boxShadow="none" onClose={onClose} />
+            <NewPost
+              width="100%"
+              boxShadow="none"
+              onClose={onClose}
+              editPostContent={post}
+            />
           </ModalBody>
         </ModalContent>
       </Modal>
@@ -55,4 +49,4 @@ function PostModal() {
   );
 }
 
-export { PostModal };
+export { EditPostModal };
