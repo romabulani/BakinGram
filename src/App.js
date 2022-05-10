@@ -12,10 +12,19 @@ import {
   PrivateRoute,
 } from "features";
 import { NotFound, ScrollToTop } from "components";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getPosts } from "features";
 
 function App() {
   const color = useColorModeValue("gray.800", "whiteAlpha.900");
   const bg = useColorModeValue("whiteAlpha.800", "gray.900");
+  const { authToken } = useSelector((state) => state.authentication);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [authToken]);
 
   return (
     <Box color={color} bg={bg} className="App">
