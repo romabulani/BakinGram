@@ -13,6 +13,7 @@ export const users = [
     username: "adarshbalika",
     password: "adarshBalika123",
     bio: "Be yourself!",
+    bookmarks: [],
     avatarUrl:
       "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp",
     website: "https://romabulani.netlify.app/",
@@ -26,6 +27,7 @@ export const users = [
     username: "johndoe",
     password: "johndoe123",
     bio: "Hello World",
+    bookmarks: [],
     avatarUrl:
       "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651554207/socialmedia/avatars/john-doe_gbkuda.webp",
     website: "https://google.com/",
@@ -39,6 +41,7 @@ export const users = [
     username: "janedoe",
     password: "janedoe123",
     bio: "Whats in bio?",
+    bookmarks: [],
     avatarUrl:
       "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651554256/socialmedia/avatars/jane-doe_il3cvx.webp",
     website: "https://romabulani.netlify.app/",

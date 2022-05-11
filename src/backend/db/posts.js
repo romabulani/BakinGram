@@ -12,8 +12,22 @@ export const posts = [
     mediaURL:
       "https://res.cloudinary.com/dtrjdcrme/video/upload/v1652188886/upload-socialmedia/oikev6eomsgahnvxcijd.mp4",
     likes: {
-      likeCount: 0,
-      likedBy: [],
+      likeCount: 1,
+      likedBy: [
+        {
+          _id: "t7cZfWIp-q",
+          firstName: "Adarsh",
+          lastName: "Balika",
+          username: "adarshbalika",
+          password: "adarshBalika123",
+          bio: "Be yourself!",
+          avatarUrl:
+            "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp",
+          website: "https://romabulani.netlify.app/",
+          createdAt: formatDate(),
+          updatedAt: formatDate(),
+        },
+      ],
       dislikedBy: [],
     },
     username: "carlsmith",
