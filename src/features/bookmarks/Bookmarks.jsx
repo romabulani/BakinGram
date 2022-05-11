@@ -8,19 +8,32 @@ import {
 import { useSelector } from "react-redux";
 
 function Bookmarks() {
+  const { authUser } = useSelector((state) => state.authentication);
   const { posts } = useSelector((state) => state.posts);
+
+  const getPost = (postId) =>
+    posts.filter((currPost) => currPost._id === postId)[0];
+
   return (
     <>
       <Navigation />
       <Flex {...flexMiddleOuterContainerStyle}>
         <Sidebar />
         <Flex {...flexMiddleContainerStyle}>
-          <Heading size="md" mt="4">
-            Bookmarks
-          </Heading>
-          {posts.map((post) => (
-            <DisplayPost key={post._id} post={post} />
-          ))}
+          {authUser.bookmarks.length === 0 ? (
+            <Heading size="lg" mt="4">
+              No Bookmarks Yet
+            </Heading>
+          ) : (
+            <>
+              <Heading size="md" mt="4">
+                Your Bookmarks
+              </Heading>
+              {authUser.bookmarks.map((postId) => (
+                <DisplayPost key={postId} post={getPost(postId)} />
+              ))}
+            </>
+          )}
         </Flex>
 
         <Suggestions />

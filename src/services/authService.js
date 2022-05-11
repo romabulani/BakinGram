@@ -22,5 +22,28 @@ const editUser = (userData, authorization) =>
       headers: { authorization },
     }
   );
+const addBookmarkInServer = (postId, authorization) =>
+  axios.post(
+    `/api/users/bookmark/${postId}`,
+    {},
+    {
+      headers: { authorization },
+    }
+  );
 
-export { postLoginData, postSignupData, editUser };
+const removeBookmarkFromServer = (postId, authorization) =>
+  axios.post(
+    `/api/users/remove-bookmark/${postId}`,
+    {},
+    {
+      headers: { authorization },
+    }
+  );
+
+export {
+  postLoginData,
+  postSignupData,
+  editUser,
+  addBookmarkInServer,
+  removeBookmarkFromServer,
+};
