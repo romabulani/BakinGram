@@ -25,9 +25,11 @@ import {
 import { displayCardStyle, fontAwesomeIconStyle, postCardStyle } from "styles";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deletePost } from "../postsSlice";
+import { deletePost, dislikePost, likePost } from "../postsSlice";
 import { useMedia } from "../hooks/useMedia";
 import { EditPostModal } from "./EditPostModal";
+import { removeBookmark, addBookmark } from "features";
+import { toast } from "react-toastify";
 
 function DisplayPost({ post }) {
   const { content, mediaURL, likes, username, createdAt } = post;
@@ -35,11 +37,40 @@ function DisplayPost({ post }) {
   const { users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const { deleteMedia } = useMedia();
-  const { authToken, authUser } = useSelector((state) => state.authentication);
+  const { authToken, authUser, bookmarkStatus } = useSelector(
+    (state) => state.authentication
+  );
+  const { postStatus } = useSelector((state) => state.posts);
   useEffect(
     () => setUserDetails(users.filter((user) => user.username === username)[0]),
     [username, users]
   );
+
+  const deletePostClickHandler = async () => {
+    dispatch(deletePost({ postId: post._id, authToken }));
+    post.deleteToken && (await deleteMedia(post.deleteToken));
+  };
+
+  const likedByUser = () =>
+    post.likes.likedBy.filter((user) => user._id === authUser._id).length !== 0;
+
+  const bookmarkedByUser = () =>
+    authUser.bookmarks.filter((postId) => postId === post._id).length !== 0;
+
+  const likeClickHandler = () => {
+    if (likedByUser()) dispatch(dislikePost({ postId: post._id, authToken }));
+    else dispatch(likePost({ postId: post._id, authToken }));
+  };
+
+  const bookmarkClickHandler = () => {
+    if (bookmarkedByUser()) {
+      dispatch(removeBookmark({ postId: post._id, authToken }));
+      toast.success("Removed from Bookmarks");
+    } else {
+      dispatch(addBookmark({ postId: post._id, authToken }));
+      toast.success("Added to Bookmarks");
+    }
+  };
 
   return (
     <>
@@ -93,13 +124,7 @@ function DisplayPost({ post }) {
                           _hover={{ bg: "gray.300" }}
                           bg="inherit"
                           fontSize="md"
-                          onClick={async () => {
-                            dispatch(
-                              deletePost({ postId: post._id, authToken })
-                            );
-                            post.deleteToken &&
-                              (await deleteMedia(post.deleteToken));
-                          }}
+                          onClick={deletePostClickHandler}
                         >
                           Delete
                         </MenuItem>
@@ -126,6 +151,39 @@ function DisplayPost({ post }) {
               )}
               <Divider />
               <HStack alignSelf="flex-start">
+                <Flex alignItems="center" flexDirection="col">
+                  <IconButton
+                    variant="iconButton"
+                    disabled={postStatus === "pending"}
+                    icon={
+                      likedByUser() ? (
+                        <FontAwesomeIcon
+                          icon="heart"
+                          style={{ color: "#E53E3E" }}
+                        />
+                      ) : (
+                        <FontAwesomeIcon icon={faHeart} />
+                      )
+                    }
+                    onClick={likeClickHandler}
+                  />
+                  <span>
+                    {post.likes.likedBy.length > 0 && post.likes.likedBy.length}
+                  </span>
+                </Flex>
+
+                <IconButton
+                  variant="iconButton"
+                  disabled={bookmarkStatus === "pending"}
+                  icon={
+                    bookmarkedByUser() ? (
+                      <FontAwesomeIcon icon="bookmark" />
+                    ) : (
+                      <FontAwesomeIcon icon={faBookmark} />
+                    )
+                  }
+                  onClick={bookmarkClickHandler}
+                />
                 <Box>
                   <IconButton
                     variant="iconButton"
@@ -133,17 +191,6 @@ function DisplayPost({ post }) {
                   />
                   <span>4</span>
                 </Box>
-                <Box>
-                  <IconButton
-                    variant="iconButton"
-                    icon={<FontAwesomeIcon icon={faHeart} />}
-                  />
-                  <span>2</span>
-                </Box>
-                <IconButton
-                  variant="iconButton"
-                  icon={<FontAwesomeIcon icon={faBookmark} />}
-                />
                 <IconButton
                   variant="iconButton"
                   icon={<FontAwesomeIcon icon="share-alt" />}

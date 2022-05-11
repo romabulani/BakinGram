@@ -1,6 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import { editUser, postLoginData, postSignupData } from "services";
+import {
+  addBookmarkInServer,
+  editUser,
+  postLoginData,
+  postSignupData,
+  removeBookmarkFromServer,
+} from "services";
 
 export const loginUser = createAsyncThunk(
   "authenticate/loginUser",
@@ -40,12 +46,38 @@ export const editUserProfile = createAsyncThunk(
   }
 );
 
+export const addBookmark = createAsyncThunk(
+  "authenticate/addBookmark",
+  async ({ postId, authToken }, { rejectWithValue }) => {
+    try {
+      const resp = await addBookmarkInServer(postId, authToken);
+      return resp.data.bookmarks;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const removeBookmark = createAsyncThunk(
+  "authenticate/removeBookmark",
+  async ({ postId, authToken }, { rejectWithValue }) => {
+    try {
+      const resp = await removeBookmarkFromServer(postId, authToken);
+      return resp.data.bookmarks;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const initialState = {
   authToken: localStorage.getItem("authToken") ?? "",
   authUser: JSON.parse(localStorage.getItem("authUser")) ?? {},
   authStatus: "idle",
   authError: null,
   editProfileStatus: "idle",
+  bookmarkStatus: "idle",
+  bookmarkError: null,
 };
 
 const authenticationSlice = createSlice({
@@ -95,6 +127,28 @@ const authenticationSlice = createSlice({
     },
     [editUserProfile.rejected]: (state, action) => {
       state.authError = action.payload;
+    },
+    [addBookmark.pending]: (state, action) => {
+      state.bookmarkStatus = "pending";
+    },
+    [addBookmark.fulfilled]: (state, action) => {
+      state.authUser.bookmarks = action.payload;
+      state.bookmarkStatus = "fulfilled";
+    },
+    [addBookmark.rejected]: (state, action) => {
+      state.bookmarkStatus = "rejected";
+      state.bookmarkError = action.payload;
+    },
+    [removeBookmark.pending]: (state, action) => {
+      state.bookmarkStatus = "pending";
+    },
+    [removeBookmark.fulfilled]: (state, action) => {
+      state.authUser.bookmarks = action.payload;
+      state.bookmarkStatus = "fulfilled";
+    },
+    [removeBookmark.rejected]: (state, action) => {
+      state.bookmarkStatus = "rejected";
+      state.bookmarkError = action.payload;
     },
   },
 });
