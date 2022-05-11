@@ -5,6 +5,8 @@ import {
   deletePostFromServer,
   editPostInServer,
   getAllPostsFromServer,
+  likePostInServer,
+  dislikePostInServer,
 } from "services";
 
 export const getPosts = createAsyncThunk(
@@ -12,7 +14,6 @@ export const getPosts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await getAllPostsFromServer();
-
       return response.data.posts;
     } catch (error) {
       rejectWithValue(error.response.data);
@@ -56,11 +57,36 @@ export const deletePost = createAsyncThunk(
   }
 );
 
+export const likePost = createAsyncThunk(
+  "/posts/likePost",
+  async ({ postId, authToken }, { rejectWithValue }) => {
+    try {
+      const response = await likePostInServer(postId, authToken);
+      return response.data.posts;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const dislikePost = createAsyncThunk(
+  "/posts/dislikePost",
+  async ({ postId, authToken }, { rejectWithValue }) => {
+    try {
+      const response = await dislikePostInServer(postId, authToken);
+      return response.data.posts;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const postsSlice = createSlice({
   name: "posts",
   initialState: {
     posts: [],
     userPosts: [],
+    postStatus: "idle",
     postError: null,
   },
   reducers: {},
@@ -91,6 +117,28 @@ const postsSlice = createSlice({
     },
     [editPost.rejected]: (state, action) => {
       state.postError = action.payload;
+    },
+    [likePost.fulfilled]: (state, action) => {
+      state.posts = action.payload;
+      state.postStatus = "fulfilled";
+    },
+    [likePost.pending]: (state, action) => {
+      state.postStatus = "pending";
+    },
+    [likePost.rejected]: (state, action) => {
+      state.postError = action.payload;
+      state.postStatus = "idle";
+    },
+    [dislikePost.fulfilled]: (state, action) => {
+      state.posts = action.payload;
+      state.postStatus = "fulfilled";
+    },
+    [dislikePost.pending]: (state, action) => {
+      state.postStatus = "pending";
+    },
+    [dislikePost.rejected]: (state, action) => {
+      state.postError = action.payload;
+      state.postStatus = "idle";
     },
   },
 });
