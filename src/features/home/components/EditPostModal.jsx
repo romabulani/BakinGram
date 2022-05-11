@@ -33,6 +33,7 @@ function EditPostModal({ post }) {
             color={useColorModeValue("gray.700", "white.900")}
             _focus={{
               boxShadow: "transparent",
+              border: "none",
             }}
           />
           <ModalBody maxW="100%">

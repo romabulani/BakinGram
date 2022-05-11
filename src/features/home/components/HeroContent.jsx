@@ -20,9 +20,8 @@ function HeroContent() {
             width={{ base: "90vw", md: "30rem" }}
             boxShadow="rgb(0 0 0 / 5%) 0px 0px 10px 4px"
           />
-          {posts.map((post) => (
-            <DisplayPost key={post._id} post={post} />
-          ))}
+          {posts &&
+            posts.map((post) => <DisplayPost key={post._id} post={post} />)}
         </Flex>
         <Suggestions />
       </Flex>

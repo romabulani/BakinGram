@@ -43,7 +43,8 @@ function PostModal() {
             bg="transparent"
             color={useColorModeValue("gray.700", "white.900")}
             _focus={{
-              boxShadow: "transparent",
+              boxShadow: "none",
+              border: "none",
             }}
           />
           <ModalBody maxW="100%">

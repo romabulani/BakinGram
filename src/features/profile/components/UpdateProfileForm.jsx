@@ -90,6 +90,7 @@ function UpdateProfileForm() {
             color={useColorModeValue("gray.700", "white.900")}
             _focus={{
               boxShadow: "transparent",
+              border: "none",
             }}
           />
           <form onSubmit={updateDetails}>
