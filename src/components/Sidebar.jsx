@@ -32,14 +32,14 @@ function Sidebar() {
           <NavLink to="/" style={getActiveStyle}>
             {getNavItem("house", "Home")}
           </NavLink>
+          <NavLink to="/explore" style={getActiveStyle}>
+            {getNavItem("compass", "Explore")}
+          </NavLink>
           <NavLink to="/notifications" style={getActiveStyle}>
             {getNavItem("bell", "Notifications")}
           </NavLink>
           <NavLink to="/bookmarks" style={getActiveStyle}>
             {getNavItem("bookmark", "Bookmarks")}
-          </NavLink>
-          <NavLink to={`/profile/${authUser.username}`} style={getActiveStyle}>
-            {getNavItem("user", "Profile")}
           </NavLink>
           <PostModal />
         </Box>
@@ -58,6 +58,9 @@ function Sidebar() {
       >
         <Link to="/">
           <FontAwesomeIcon icon="home" />
+        </Link>
+        <Link to="/explore">
+          <FontAwesomeIcon icon="compass" />
         </Link>
         <Link to="/notifications">
           <FontAwesomeIcon icon="bell" />
