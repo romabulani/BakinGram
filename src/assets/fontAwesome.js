@@ -22,6 +22,7 @@ import {
   faPlusCircle,
   faCamera,
   faHeart,
+  faCompass,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -45,7 +46,8 @@ library.add(
   faEyeSlash,
   faPlusCircle,
   faCamera,
-  faHeart
+  faHeart,
+  faCompass
 );
 
 export { library };
