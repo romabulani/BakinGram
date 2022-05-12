@@ -42,15 +42,16 @@ const profileSlice = createSlice({
       state.profileDetails = action.payload;
     },
     [loadUserDetails.rejected]: (state, action) => {
-      console.error(action);
+      console.error(action.payload);
     },
     [loadUserPosts.fulfilled]: (state, action) => {
       state.postsDetails = action.payload;
     },
     [loadUserPosts.rejected]: (state, action) => {
-      console.error(action);
+      console.error(action.payload);
     },
   },
 });
 
 export const profileReducer = profileSlice.reducer;
+export const { resetProfile } = profileSlice.actions;
