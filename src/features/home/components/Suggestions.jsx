@@ -31,12 +31,14 @@ function Suggestions() {
       <Text size="lg" fontWeight="bold">
         Suggestions for you
       </Text>
-      {suggestions.map(
-        (user) =>
-          user.username !== authUser.username && (
-            <SuggestionCard user={user} key={user._id} followButton={true} />
-          )
-      )}
+      {suggestions
+        .slice(0, 5)
+        .map(
+          (user) =>
+            user.username !== authUser.username && (
+              <SuggestionCard user={user} key={user._id} followButton={true} />
+            )
+        )}
     </Flex>
   );
 }
