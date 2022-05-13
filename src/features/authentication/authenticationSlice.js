@@ -16,6 +16,7 @@ export const loginUser = createAsyncThunk(
       return loginResponse.data;
     } catch (error) {
       toast.error(`Incorrect username or password`);
+      console.error(error.response.data);
       return rejectWithValue(error);
     }
   }
@@ -29,6 +30,7 @@ export const signupUser = createAsyncThunk(
       return signupResponse.data;
     } catch (error) {
       toast.error(`Couldn't Signup! Please try again.`);
+      console.error(error.response.data);
       return rejectWithValue(error.response.data);
     }
   }
@@ -41,6 +43,8 @@ export const editUserProfile = createAsyncThunk(
       const resp = await editUser(userDetails, authToken);
       return resp.data;
     } catch (error) {
+      toast.error("Couldn't Edit Profile! Please try again.");
+      console.error(error.response.data);
       rejectWithValue(error.response.data);
     }
   }
@@ -53,6 +57,8 @@ export const addBookmark = createAsyncThunk(
       const resp = await addBookmarkInServer(postId, authToken);
       return resp.data.bookmarks;
     } catch (error) {
+      toast.error("Couldn't Add to Bookmarks.");
+      console.error(error.response.data);
       rejectWithValue(error.response.data);
     }
   }
@@ -65,6 +71,8 @@ export const removeBookmark = createAsyncThunk(
       const resp = await removeBookmarkFromServer(postId, authToken);
       return resp.data.bookmarks;
     } catch (error) {
+      toast.error("Couldn't remove from Bookmarks.");
+      console.error(error.response.data);
       rejectWithValue(error.response.data);
     }
   }

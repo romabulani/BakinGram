@@ -9,6 +9,7 @@ export const loadUserDetails = createAsyncThunk(
       const response = await getUser(username);
       return response.data.user;
     } catch (error) {
+      console.error(error.response.data);
       return rejectWithValue(error.response.data);
     }
   }
@@ -21,6 +22,7 @@ export const loadUserPosts = createAsyncThunk(
       const response = await getAllPostsOfUserFromServer(username);
       return response.data.posts;
     } catch (error) {
+      console.error(error.response.data);
       return rejectWithValue(error.response.data);
     }
   }

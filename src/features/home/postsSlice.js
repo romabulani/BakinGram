@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { logoutUser } from "features";
+import { toast } from "react-toastify";
 import {
   addPostToServer,
   deletePostFromServer,
@@ -19,6 +20,7 @@ export const getPosts = createAsyncThunk(
       const response = await getAllPostsFromServer();
       return response.data.posts;
     } catch (error) {
+      console.error(error.response.data);
       rejectWithValue(error.response.data);
     }
   }
@@ -31,6 +33,8 @@ export const addPost = createAsyncThunk(
       const response = await addPostToServer(postData, authToken);
       return response.data.posts;
     } catch (error) {
+      console.error(error.response.data);
+      toast.error("Could't add post! Try again");
       rejectWithValue(error.response.data);
     }
   }
@@ -43,6 +47,8 @@ export const editPost = createAsyncThunk(
       const response = await editPostInServer(postData, authToken);
       return response.data.posts;
     } catch (error) {
+      console.error(error.response.data);
+      toast.error("Could't edit post! Try again");
       rejectWithValue(error.response.data);
     }
   }
@@ -55,6 +61,8 @@ export const deletePost = createAsyncThunk(
       const response = await deletePostFromServer(postId, authToken);
       return response.data.posts;
     } catch (error) {
+      console.error(error.response.data);
+      toast.error("Could't delete post! Try again");
       rejectWithValue(error.response.data);
     }
   }
@@ -67,6 +75,7 @@ export const likePost = createAsyncThunk(
       const response = await likePostInServer(postId, authToken);
       return response.data.posts;
     } catch (error) {
+      console.error(error.response.data);
       rejectWithValue(error.response.data);
     }
   }
@@ -79,6 +88,7 @@ export const dislikePost = createAsyncThunk(
       const response = await dislikePostInServer(postId, authToken);
       return response.data.posts;
     } catch (error) {
+      console.error(error.response.data);
       rejectWithValue(error.response.data);
     }
   }
@@ -95,6 +105,8 @@ export const addComment = createAsyncThunk(
       );
       return response.data.posts;
     } catch (error) {
+      console.error(error.response.data);
+      toast.error("Couldn't add comment!");
       rejectWithValue(error.response.data);
     }
   }
@@ -115,6 +127,8 @@ export const editComment = createAsyncThunk(
       );
       return response.data.posts;
     } catch (error) {
+      console.error(error.response.data);
+      toast.error("Couldn't edit comment!");
       rejectWithValue(error.response.data);
     }
   }
@@ -131,6 +145,8 @@ export const deleteComment = createAsyncThunk(
       );
       return response.data.posts;
     } catch (error) {
+      console.error(error.response.data);
+      toast.error("Couldn't delete comment!");
       rejectWithValue(error.response.data);
     }
   }

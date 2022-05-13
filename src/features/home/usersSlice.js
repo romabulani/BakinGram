@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { logoutUser } from "features";
 import { editUserProfile } from "features";
+import { toast } from "react-toastify";
 import {
   followUserInServer,
   getAllUsers,
@@ -12,7 +13,7 @@ export const getUsers = createAsyncThunk("/users/getUsers", async () => {
     const response = await getAllUsers();
     return response.data.users;
   } catch (error) {
-    console.error(error);
+    console.error(error.response.data);
   }
 });
 
@@ -24,7 +25,8 @@ export const followUser = createAsyncThunk(
       dispatch(editUserProfile({ userDetails: response.data.user, authToken }));
       return response.data;
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data);
+      toast.error("Couldn't follow user!");
       return rejectWithValue(error.response.data);
     }
   }
@@ -38,6 +40,8 @@ export const unfollowUser = createAsyncThunk(
       dispatch(editUserProfile({ userDetails: response.data.user, authToken }));
       return response.data;
     } catch (error) {
+      console.error(error.response.data);
+      toast.error("Couldn't unfollow user!");
       return rejectWithValue(error.response.data);
     }
   }
