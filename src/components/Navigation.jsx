@@ -77,9 +77,8 @@ function Navigation() {
         <FontAwesomeIcon
           icon={colorMode === "light" ? "sun" : "moon"}
           onClick={toggleColorMode}
-          style={fontAwesomeIconStyle}
+          style={{ ...fontAwesomeIconStyle, paddingRight: "10px" }}
         />
-
         <Link to={`/profile/${authUser.username}`}>
           <Avatar
             display={{ base: "none", md: "block" }}

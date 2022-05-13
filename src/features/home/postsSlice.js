@@ -34,7 +34,7 @@ export const addPost = createAsyncThunk(
 );
 
 export const editPost = createAsyncThunk(
-  "/posts/addPost",
+  "/posts/editPost",
   async ({ postData, authToken }, { rejectWithValue }) => {
     try {
       const response = await editPostInServer(postData, authToken);
@@ -92,7 +92,7 @@ const postsSlice = createSlice({
   reducers: {},
   extraReducers: {
     [logoutUser]: (state) => {
-      state.users = [];
+      state.posts = [];
     },
     [getPosts.fulfilled]: (state, action) => {
       state.posts = action.payload;

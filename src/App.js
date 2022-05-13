@@ -10,6 +10,7 @@ import {
   LoginForm,
   SignupForm,
   PrivateRoute,
+  Explore,
 } from "features";
 import { NotFound, ScrollToTop } from "components";
 import { useDispatch, useSelector } from "react-redux";
@@ -68,7 +69,14 @@ function App() {
             </PrivateRoute>
           }
         />
-
+        <Route
+          path="/explore"
+          element={
+            <PrivateRoute>
+              <Explore />
+            </PrivateRoute>
+          }
+        />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
         <Route path="*" element={<NotFound />} />

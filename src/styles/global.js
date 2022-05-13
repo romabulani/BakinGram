@@ -30,14 +30,14 @@ export const sidebarStyle = {
 
 export const suggestionContainerStyle = {
   flexDirection: "column",
-  paddingRight: "12",
+  paddingRight: "4",
   h: "calc(100vh - 3.5rem)",
   py: "4",
-  paddingLeft: "8",
+  paddingLeft: "4",
   position: "sticky",
   right: "4",
   top: "3.5rem",
-  minW: "12rem",
+  // minW: "12rem",
   borderLeft: "1px",
   display: { base: "none", lg: "block" },
 };

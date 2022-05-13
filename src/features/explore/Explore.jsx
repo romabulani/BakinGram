@@ -1,26 +1,22 @@
-import React from "react";
 import { Flex } from "@chakra-ui/react";
-import { Suggestions, ProfileCard } from "features";
-import { Footer, Navigation, Sidebar } from "components";
+import { Navigation, Sidebar } from "components";
+import { Suggestions } from "features";
 import {
   flexMiddleContainerStyle,
   flexMiddleOuterContainerStyle,
 } from "styles";
 
-function Profile() {
+function Explore() {
   return (
     <>
       <Navigation />
       <Flex {...flexMiddleOuterContainerStyle}>
         <Sidebar />
-        <Flex {...flexMiddleContainerStyle}>
-          <ProfileCard />
-        </Flex>
+        <Flex {...flexMiddleContainerStyle}></Flex>
         <Suggestions />
       </Flex>
-      <Footer />
     </>
   );
 }
 
-export { Profile };
+export { Explore };
