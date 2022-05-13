@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   Flex,
@@ -26,11 +26,14 @@ function SignupForm() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-  const { authToken } = useSelector((state) => state.authentication);
   const { formData, formDispatch, errorData, errorDispatch, signUpHandler } =
     useSignupHandler();
+  const location = useLocation();
 
-  useEffect(() => authToken && navigate("/"), [authToken, navigate]);
+  useEffect(() => {
+    navigate(location?.state?.from?.pathname || "/", { replace: true });
+  }, []);
+
   return (
     <Flex justifyContent="center">
       <Flex
@@ -46,7 +49,9 @@ function SignupForm() {
         <Heading size="md">SIGN UP</Heading>
         <form
           style={{ width: "100%" }}
-          onSubmit={(e) => signUpHandler(e)}
+          onSubmit={(e) => {
+            signUpHandler(e);
+          }}
           noValidate
         >
           <FormControl
@@ -237,7 +242,9 @@ function SignupForm() {
             ml="2"
             textDecoration="underline"
             fontSize="1.1rem"
-            onClick={() => navigate("/login")}
+            onClick={() =>
+              navigate("/signup", { state: location.state, replace: true })
+            }
           >
             Log In here
           </Button>

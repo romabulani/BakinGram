@@ -72,7 +72,7 @@ function ProfileCard() {
             <Avatar
               src={profileDetails?.avatarUrl}
               size="lg"
-              name={`${profileDetails.firstName} ${profileDetails.lastName}`}
+              name={profileDetails.firstName}
             />
             <Flex w="100%" m="2" flexDirection="column" rowGap="1">
               <Flex justifyContent="space-between" flexWrap="wrap">

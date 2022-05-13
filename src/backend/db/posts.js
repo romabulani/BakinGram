@@ -13,23 +13,10 @@ export const posts = [
       "https://res.cloudinary.com/dtrjdcrme/video/upload/v1652188886/upload-socialmedia/oikev6eomsgahnvxcijd.mp4",
     likes: {
       likeCount: 1,
-      likedBy: [
-        {
-          _id: "t7cZfWIp-q",
-          firstName: "Adarsh",
-          lastName: "Balika",
-          username: "adarshbalika",
-          password: "adarshBalika123",
-          bio: "Be yourself!",
-          avatarUrl:
-            "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp",
-          website: "https://romabulani.netlify.app/",
-          createdAt: formatDate(),
-          updatedAt: formatDate(),
-        },
-      ],
+      likedBy: [],
       dislikedBy: [],
     },
+    comments: [],
     username: "carlsmith",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -44,6 +31,26 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    comments: [
+      {
+        _id: "EO7iOPN9n8",
+        username: "carlsmith",
+        text: "Happy Birthday! Enjoy your Day!!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: "QK52wf6HI1",
+        username: "janedoe",
+        text: "Wow! Looks Amazzing! Happy Birthday!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
     username: "adarshbalika",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -58,6 +65,17 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    comments: [
+      {
+        _id: "6nImWvImxo",
+        username: "johndoe",
+        text: "That's mouth watering! Could you make one for my Birthday as well?",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
     username: "janedoe",
     createdAt: formatDate(),
     updatedAt: formatDate(),

@@ -103,7 +103,7 @@ function UpdateProfileForm() {
                   alt="profile-image"
                   size="md"
                   marginRight="2"
-                  name={`${authUser.firstName} ${authUser.lastName}`}
+                  name={authUser.firstName}
                 >
                   <AvatarBadge boxSize="1.5em" border="0">
                     <FormControl>

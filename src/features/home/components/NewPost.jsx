@@ -24,7 +24,9 @@ import { useMedia } from "../hooks/useMedia";
 
 function NewPost({ width, boxShadow, onClose, editPostContent }) {
   const { authUser, authToken } = useSelector((state) => state.authentication);
-  const [content, setContent] = useState(editPostContent?.content);
+  const [content, setContent] = useState(
+    editPostContent ? editPostContent.content : ""
+  );
   const [mediaURL, setMediaURL] = useState(editPostContent?.mediaURL);
   const [deleteToken, setDeleteToken] = useState(editPostContent?.deleteToken);
   const dispatch = useDispatch();
@@ -69,7 +71,7 @@ function NewPost({ width, boxShadow, onClose, editPostContent }) {
         <Avatar
           src={authUser.avatarUrl}
           size="md"
-          name={`${authUser.firstName} ${authUser.lastName}`}
+          name={authUser.firstName}
           marginRight="3"
           mt="2"
         />
