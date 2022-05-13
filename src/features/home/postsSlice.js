@@ -7,6 +7,9 @@ import {
   getAllPostsFromServer,
   likePostInServer,
   dislikePostInServer,
+  addCommentToPostInServer,
+  editCommentInServer,
+  deleteCommentFromServer,
 } from "services";
 
 export const getPosts = createAsyncThunk(
@@ -81,6 +84,57 @@ export const dislikePost = createAsyncThunk(
   }
 );
 
+export const addComment = createAsyncThunk(
+  "/posts/addComment",
+  async ({ postId, commentData, authToken }, { rejectWithValue }) => {
+    try {
+      const response = await addCommentToPostInServer(
+        postId,
+        commentData,
+        authToken
+      );
+      return response.data.posts;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const editComment = createAsyncThunk(
+  "/posts/editComment",
+  async (
+    { postId, commentId, commentData, authToken },
+    { rejectWithValue }
+  ) => {
+    try {
+      const response = await editCommentInServer(
+        postId,
+        commentId,
+        commentData,
+        authToken
+      );
+      return response.data.posts;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const deleteComment = createAsyncThunk(
+  "/posts/deleteComment",
+  async ({ postId, commentId, authToken }, { rejectWithValue }) => {
+    try {
+      const response = await deleteCommentFromServer(
+        postId,
+        commentId,
+        authToken
+      );
+      return response.data.posts;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
 const postsSlice = createSlice({
   name: "posts",
   initialState: {
@@ -137,6 +191,39 @@ const postsSlice = createSlice({
       state.postStatus = "pending";
     },
     [dislikePost.rejected]: (state, action) => {
+      state.postError = action.payload;
+      state.postStatus = "idle";
+    },
+    [addComment.fulfilled]: (state, action) => {
+      state.posts = action.payload;
+      state.postStatus = "fulfilled";
+    },
+    [addComment.pending]: (state, action) => {
+      state.postStatus = "pending";
+    },
+    [addComment.rejected]: (state, action) => {
+      state.postError = action.payload;
+      state.postStatus = "idle";
+    },
+    [editComment.fulfilled]: (state, action) => {
+      state.posts = action.payload;
+      state.postStatus = "fulfilled";
+    },
+    [editComment.pending]: (state, action) => {
+      state.postStatus = "pending";
+    },
+    [editComment.rejected]: (state, action) => {
+      state.postError = action.payload;
+      state.postStatus = "idle";
+    },
+    [deleteComment.fulfilled]: (state, action) => {
+      state.posts = action.payload;
+      state.postStatus = "fulfilled";
+    },
+    [deleteComment.pending]: (state, action) => {
+      state.postStatus = "pending";
+    },
+    [deleteComment.rejected]: (state, action) => {
       state.postError = action.payload;
       state.postStatus = "idle";
     },
