@@ -51,7 +51,8 @@ function Sidebar() {
         zIndex="7"
         width="100vw"
         justifyContent="space-around"
-        height="2rem"
+        alignItems="center"
+        height="2.5rem"
         padding="5px"
         backgroundColor={useColorModeValue("white.900", "gray.900")}
         display={{ base: "flex", md: "none" }}
@@ -74,7 +75,7 @@ function Sidebar() {
             src={authUser.avatarUrl}
             alt="profile-image"
             size="xs"
-            name={authUser.firstName + authUser.lastName}
+            name={authUser.firstName}
           />
         </Link>
       </Flex>

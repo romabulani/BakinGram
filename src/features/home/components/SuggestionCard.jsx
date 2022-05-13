@@ -21,7 +21,7 @@ function SuggestionCard({ user, followButton, onClose }) {
             alt="profile-image"
             size="sm"
             marginRight="2"
-            name={`${user.firstName} ${user.lastName}`}
+            name={user.firstName}
           />
           <Flex width="100%" flexDirection="column" flexGrow="1">
             <Text w="12ch">{`${user.firstName} ${user.lastName}`}</Text>

@@ -86,7 +86,7 @@ function Navigation() {
             alt="profile-image"
             size="sm"
             marginRight="8"
-            name={authUser.firstName + authUser.lastName}
+            name={authUser.firstName}
           />
         </Link>
       </HStack>

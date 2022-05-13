@@ -37,7 +37,7 @@ export const suggestionContainerStyle = {
   position: "sticky",
   right: "4",
   top: "3.5rem",
-  // minW: "12rem",
+  w: "18rem",
   borderLeft: "1px",
   display: { base: "none", lg: "block" },
 };
