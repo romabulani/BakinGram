@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Flex,
   VStack,
@@ -28,11 +28,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { deletePost, dislikePost, likePost } from "../postsSlice";
 import { useMedia } from "../hooks/useMedia";
 import { EditPostModal } from "./EditPostModal";
-import { removeBookmark, addBookmark } from "features";
+import { removeBookmark, addBookmark, CommentModal } from "features";
 import { toast } from "react-toastify";
 
-function DisplayPost({ post }) {
-  const { content, mediaURL, likes, username, createdAt } = post;
+function DisplayPost({ post, singlePage }) {
+  const { content, mediaURL, username, createdAt } = post;
   const [userDetails, setUserDetails] = useState(null);
   const { users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
@@ -46,6 +46,7 @@ function DisplayPost({ post }) {
     [username, users]
   );
 
+  // On Click Functions
   const deletePostClickHandler = async () => {
     dispatch(deletePost({ postId: post._id, authToken }));
     post.deleteToken && (await deleteMedia(post.deleteToken));
@@ -72,6 +73,13 @@ function DisplayPost({ post }) {
     }
   };
 
+  const copyHandler = () => {
+    if (singlePage) navigator.clipboard.writeText(`${window.location.href}`);
+    else
+      navigator.clipboard.writeText(`${window.location.href}post/${post._id}`);
+    toast.info("Link Copied. Start sharing!");
+  };
+
   return (
     <>
       {userDetails && (
@@ -85,23 +93,34 @@ function DisplayPost({ post }) {
                 columnGap="1"
                 width="90%"
               >
-                <Avatar
-                  src={userDetails.avatarUrl}
-                  alt="profile-image"
-                  size="md"
-                  marginRight="2"
-                  name={`${userDetails.firstName} ${userDetails.lastName}`}
-                />
-                <Text fontWeight="bold">
-                  {`${userDetails.firstName} ${userDetails.lastName}`}
-                </Text>
-                <Link to={`/profile/${username}`}>@{username}</Link>
-                <FontAwesomeIcon icon="circle-dot" fontSize="5px" />
-                <Text>{` ${new Date(createdAt)
-                  .toDateString()
-                  .split(" ")
-                  .slice(1, 3)
-                  .join(" ")}`}</Text>
+                <Link to={`/profile/${username}`}>
+                  <Flex>
+                    <Avatar
+                      src={userDetails.avatarUrl}
+                      alt="profile-image"
+                      size="md"
+                      marginRight="2"
+                      display="block"
+                      name={userDetails.firstName}
+                    />
+                    <Flex flexDirection="column">
+                      <Flex columnGap="10px">
+                        <Text fontWeight="bold">
+                          {`${userDetails.firstName} ${userDetails.lastName}`}
+                        </Text>
+                        <Text fontSize="sm" alignSelf="center">
+                          {` ${new Date(createdAt)
+                            .toDateString()
+                            .split(" ")
+                            .slice(1, 3)
+                            .join(" ")}`}
+                        </Text>
+                      </Flex>
+                      <Text fontSize="sm"> @{username}</Text>{" "}
+                    </Flex>
+                  </Flex>
+                </Link>
+
                 {authUser.username === userDetails.username && (
                   <Menu>
                     <MenuButton
@@ -124,7 +143,7 @@ function DisplayPost({ post }) {
                           _hover={{ bg: "gray.300" }}
                           bg="inherit"
                           fontSize="md"
-                          onClick={deletePostClickHandler}
+                          onClick={(e) => deletePostClickHandler(e)}
                         >
                           Delete
                         </MenuItem>
@@ -133,22 +152,25 @@ function DisplayPost({ post }) {
                   </Menu>
                 )}
               </Flex>
-              <Text width="100%">{content}</Text>
-              {mediaURL && mediaURL.split("/")[4] === "image" ? (
-                <Image
-                  src={mediaURL}
-                  maxHeight="20rem"
-                  objectFit="fill"
-                  marginLeft="0"
-                  width="100%"
-                />
-              ) : (
-                mediaURL && (
-                  <video controls>
-                    <source src={mediaURL} />
-                  </video>
-                )
-              )}
+              <Link to={`/post/${post._id}`}>
+                <Text width="100%">{content}</Text>
+                {mediaURL && mediaURL.split("/")[4] === "image" ? (
+                  <Image
+                    src={mediaURL}
+                    maxHeight="20rem"
+                    objectFit="fill"
+                    marginLeft="0"
+                    width="100%"
+                  />
+                ) : (
+                  mediaURL && (
+                    <video controls>
+                      <source src={mediaURL} />
+                    </video>
+                  )
+                )}
+              </Link>
+
               <Divider />
               <HStack alignSelf="flex-start">
                 <Flex alignItems="center" flexDirection="col">
@@ -165,7 +187,7 @@ function DisplayPost({ post }) {
                         <FontAwesomeIcon icon={faHeart} />
                       )
                     }
-                    onClick={likeClickHandler}
+                    onClick={(e) => likeClickHandler()}
                   />
                   <span>
                     {post.likes.likedBy.length > 0 && post.likes.likedBy.length}
@@ -182,18 +204,19 @@ function DisplayPost({ post }) {
                       <FontAwesomeIcon icon={faBookmark} />
                     )
                   }
-                  onClick={bookmarkClickHandler}
+                  onClick={(e) => bookmarkClickHandler(e)}
                 />
                 <Box>
-                  <IconButton
-                    variant="iconButton"
-                    icon={<FontAwesomeIcon icon={faComment} />}
-                  />
-                  <span>4</span>
+                  <CommentModal postId={post._id} />
+                  {post.comments.length > 0 && (
+                    <span>{post.comments.length}</span>
+                  )}
                 </Box>
+
                 <IconButton
                   variant="iconButton"
                   icon={<FontAwesomeIcon icon="share-alt" />}
+                  onClick={copyHandler}
                 />
               </HStack>
             </VStack>
