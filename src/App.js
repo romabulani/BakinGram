@@ -11,6 +11,7 @@ import {
   SignupForm,
   PrivateRoute,
   Explore,
+  SinglePostPage,
 } from "features";
 import { NotFound, ScrollToTop } from "components";
 import { useDispatch, useSelector } from "react-redux";
@@ -74,6 +75,14 @@ function App() {
           element={
             <PrivateRoute>
               <Explore />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/post/:postId"
+          element={
+            <PrivateRoute>
+              <SinglePostPage />
             </PrivateRoute>
           }
         />

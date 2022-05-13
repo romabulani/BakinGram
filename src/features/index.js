@@ -19,3 +19,5 @@ export * from "./home/usersSlice";
 export * from "./profile/profileSlice";
 export * from "./home/postsSlice";
 export { EditPostModal } from "./home/components/EditPostModal";
+export { CommentModal } from "./home/components/CommentModal";
+export { SinglePostPage } from "./home/components/SinglePostPage";
