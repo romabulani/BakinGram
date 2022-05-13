@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Flex,
   Image,
@@ -29,8 +29,13 @@ function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { authToken } = useSelector((state) => state.authentication);
-
-  useEffect(() => authToken && navigate("/"), [authToken, navigate]);
+  const location = useLocation();
+  useEffect(
+    () =>
+      authToken &&
+      navigate(location?.state?.from?.pathname || "/", { replace: true }),
+    [authToken]
+  );
 
   const loginHandler = (e) => {
     e.preventDefault();
@@ -162,7 +167,9 @@ function LoginForm() {
             ml="2"
             textDecoration="underline"
             fontSize="1.1rem"
-            onClick={() => navigate("/signup")}
+            onClick={() =>
+              navigate("/signup", { state: location.state, replace: true })
+            }
           >
             Sign up here
           </Button>
