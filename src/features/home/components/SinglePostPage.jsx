@@ -18,11 +18,9 @@ function SinglePostPage() {
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    if (postId && posts) {
+    if (postId && posts)
       setPost(posts.filter((currPost) => currPost._id === postId)[0]);
-    }
-  }, [postId, posts]);
-
+  }, [posts]);
   return (
     <>
       <Navigation />
@@ -30,7 +28,7 @@ function SinglePostPage() {
         <Sidebar />
         {post && (
           <Flex {...flexMiddleContainerStyle}>
-            <DisplayPost post={post} singlePage={true} />
+            <DisplayPost post={post} />
             {post.comments &&
               post.comments.map((comment) => (
                 <Flex

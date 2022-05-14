@@ -33,13 +33,13 @@ function ProfileCard() {
   const { followStatus } = useSelector((state) => state.users);
   const { authUser, authToken } = useSelector((state) => state.authentication);
   const { postsDetails } = useSelector((state) => state.profile);
-
+  const { posts } = useSelector((state) => state.posts);
   useEffect(() => {
     if (username) {
       dispatch(loadUserDetails(username));
       dispatch(loadUserPosts(username));
     }
-  }, [username, authUser]);
+  }, [username, authUser, posts]);
 
   const isFollowed = () =>
     profileDetails.followers.some(
