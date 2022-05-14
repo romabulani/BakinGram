@@ -61,4 +61,49 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
+
+  {
+    _id: "o5gzWjEeX_",
+    firstName: "Roma",
+    lastName: "Bulani",
+    username: "romabulani",
+    password: "romabulani123",
+    bio: "Aspiring Frontend Engineer",
+    bookmarks: [],
+    avatarUrl:
+      "https://res.cloudinary.com/dtrjdcrme/image/upload/v1652525370/socialmedia/avatars/roma.webp",
+    website: "https://romabulani.hashnode.dev/",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+
+  {
+    _id: "M1NR81Bzlz",
+    firstName: "Alex",
+    lastName: "Maxwell",
+    username: "alexmaxwell",
+    password: "alexmaxwell123",
+    bio: "What's up?",
+    bookmarks: [],
+    avatarUrl:
+      "https://res.cloudinary.com/dtrjdcrme/image/upload/v1652525373/socialmedia/avatars/alex-maxwell.webp",
+    website: "",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+
+  {
+    _id: "qq8zWjEeXd",
+    firstName: "Sophia",
+    lastName: "Jones",
+    username: "sophiajones",
+    password: "sophiajones123",
+    bio: "Frontend Engineer",
+    bookmarks: [],
+    avatarUrl:
+      "https://res.cloudinary.com/dtrjdcrme/image/upload/v1652525510/socialmedia/avatars/sophia-jones.webp",
+    website: "",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
 ];
