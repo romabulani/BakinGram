@@ -157,9 +157,14 @@ const postsSlice = createSlice({
     posts: [],
     userPosts: [],
     postStatus: "idle",
+    postSorting: "default",
     postError: null,
   },
-  reducers: {},
+  reducers: {
+    changeSorting: (state, action) => {
+      state.postSorting = action.payload;
+    },
+  },
   extraReducers: {
     [logoutUser]: (state) => {
       state.posts = [];
@@ -247,3 +252,4 @@ const postsSlice = createSlice({
 });
 
 export const postsReducer = postsSlice.reducer;
+export const { changeSorting } = postsSlice.actions;
