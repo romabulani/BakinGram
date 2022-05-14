@@ -32,7 +32,10 @@ function Navigation() {
       <Flex alignItems="flex-end">
         <Link to="/">
           <Image
-            src="https://res.cloudinary.com/dtrjdcrme/image/upload/v1649076577/ecommerce/logo_sr3h5w.webp"
+            src={useColorModeValue(
+              "https://res.cloudinary.com/dtrjdcrme/image/upload/v1649076577/ecommerce/logo_sr3h5w.webp",
+              "https://res.cloudinary.com/dtrjdcrme/image/upload/v1652524820/quiz/logo_darktheme2.webp"
+            )}
             alt="muffin-logo"
             boxSize="50px"
             objectFit="cover"

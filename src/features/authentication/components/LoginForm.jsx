@@ -30,12 +30,10 @@ function LoginForm() {
   const dispatch = useDispatch();
   const { authToken } = useSelector((state) => state.authentication);
   const location = useLocation();
-  useEffect(
-    () =>
-      authToken &&
-      navigate(location?.state?.from?.pathname || "/", { replace: true }),
-    [authToken]
-  );
+  useEffect(() => {
+    authToken &&
+      navigate(location?.state?.from?.pathname || "/", { replace: true });
+  }, [authToken]);
 
   const loginHandler = (e) => {
     e.preventDefault();

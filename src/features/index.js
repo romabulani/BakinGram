@@ -7,7 +7,6 @@ export { Footer } from "../components/Footer";
 export { ProfileCard } from "./profile/components/ProfileCard";
 export { Profile } from "./profile/components/Profile";
 export { Bookmarks } from "./bookmarks/Bookmarks";
-export { Notifications } from "./notifications/Notifications";
 export { LoginForm } from "./authentication/components/LoginForm";
 export { SignupForm } from "./authentication/components/SignupForm";
 export { UpdateProfileForm } from "./profile/components/UpdateProfileForm";

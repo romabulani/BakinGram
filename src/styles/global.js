@@ -8,7 +8,7 @@ export const postCardStyle = {
 };
 
 export const displayCardStyle = {
-  w: { base: "90vw", md: "30rem" },
+  w: { base: "90vw", md: "95%", lg: "30rem" },
   mt: "4",
   pos: "relative",
   boxShadow: "rgb(0 0 0 / 5%) 0px 0px 10px 4px",
@@ -17,14 +17,14 @@ export const displayCardStyle = {
 export const flexMiddleContainerStyle = {
   flexDirection: "column",
   alignItems: "center",
-  w: { base: "100%", md: "62.5%" },
+  w: { base: "100%", md: "40%", lg: "62.5%" },
 };
 
 export const sidebarStyle = {
-  w: "15rem",
   flexDir: "column",
   fontSize: "1.2rem",
   borderRight: "1px",
+  w: { md: "5rem", lg: "15rem" },
   display: { base: "none", md: "block" },
 };
 
@@ -39,7 +39,8 @@ export const suggestionContainerStyle = {
   top: "3.5rem",
   w: "18rem",
   borderLeft: "1px",
-  display: { base: "none", lg: "block" },
+  display: { base: "none", md: "block" },
+  "overflow-y": "scroll",
 };
 
 export const flexMiddleOuterContainerStyle = {
@@ -47,8 +48,7 @@ export const flexMiddleOuterContainerStyle = {
   minHeight: "100vh",
   justifyContent: {
     base: "center",
-    md: "flex-start",
-    lg: "space-between",
+    md: "space-between",
   },
 };
 
@@ -56,4 +56,17 @@ export const fontAwesomeIconStyle = {
   cursor: "pointer",
   fontSize: "1.2rem",
   marginright: "1rem",
+};
+
+export const sortButtonsContainerStyle = {
+  position: "sticky",
+  top: "3.5rem",
+  zIndex: "7",
+  width: "96vw",
+  justifyContent: "space-around",
+  alignItems: "center",
+  height: "2.5rem",
+  padding: "5px",
+  display: { base: "flex", md: "none" },
+  borderBottom: "1px solid",
 };

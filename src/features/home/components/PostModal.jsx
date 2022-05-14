@@ -18,8 +18,10 @@ function PostModal() {
     <>
       <Button
         variant="solidPrimary"
-        margin="1rem"
-        w="85%"
+        margin={{ md: "0.5rem", lg: "1rem" }}
+        justifySelf="center"
+        w={{ md: "4rem", lg: "85%" }}
+        p={{ md: "6px", lg: "auto" }}
         onClick={onOpen}
         display={{ base: "none", md: "block" }}
       >

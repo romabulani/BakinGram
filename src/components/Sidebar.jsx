@@ -16,9 +16,14 @@ function Sidebar() {
       : { backgroundColor: "transparent", display: "block" };
 
   const getNavItem = (iconName, text) => (
-    <Flex columnGap="1rem" alignItems="center" padding="0.8rem 2rem">
+    <Flex
+      columnGap="1rem"
+      alignItems="center"
+      padding="0.8rem 2rem"
+      justifyContent={{ md: "center", lg: "flex-start" }}
+    >
       <FontAwesomeIcon icon={iconName} />
-      <Text>{text}</Text>
+      <Text display={{ md: "none", lg: "inline-block" }}>{text}</Text>
     </Flex>
   );
 
@@ -34,9 +39,6 @@ function Sidebar() {
           </NavLink>
           <NavLink to="/explore" style={getActiveStyle}>
             {getNavItem("compass", "Explore")}
-          </NavLink>
-          <NavLink to="/notifications" style={getActiveStyle}>
-            {getNavItem("bell", "Notifications")}
           </NavLink>
           <NavLink to="/bookmarks" style={getActiveStyle}>
             {getNavItem("bookmark", "Bookmarks")}
@@ -62,9 +64,6 @@ function Sidebar() {
         </Link>
         <Link to="/explore">
           <FontAwesomeIcon icon="compass" />
-        </Link>
-        <Link to="/notifications">
-          <FontAwesomeIcon icon="bell" />
         </Link>
         <PostModal />
         <Link to="/bookmarks">

@@ -1,18 +1,23 @@
 import { Flex } from "@chakra-ui/react";
 import { Navigation, Sidebar } from "components";
-import { Suggestions } from "features";
+import { DisplayPost, Suggestions } from "features";
+import { useSelector } from "react-redux";
 import {
   flexMiddleContainerStyle,
   flexMiddleOuterContainerStyle,
 } from "styles";
 
 function Explore() {
+  const { posts } = useSelector((state) => state.posts);
   return (
     <>
       <Navigation />
       <Flex {...flexMiddleOuterContainerStyle}>
         <Sidebar />
-        <Flex {...flexMiddleContainerStyle}></Flex>
+        <Flex {...flexMiddleContainerStyle}>
+          {posts &&
+            posts.map((post) => <DisplayPost key={post._id} post={post} />)}
+        </Flex>
         <Suggestions />
       </Flex>
     </>

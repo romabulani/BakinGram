@@ -12,13 +12,13 @@ export const posts = [
     mediaURL:
       "https://res.cloudinary.com/dtrjdcrme/video/upload/v1652188886/upload-socialmedia/oikev6eomsgahnvxcijd.mp4",
     likes: {
-      likeCount: 1,
+      likeCount: 0,
       likedBy: [],
       dislikedBy: [],
     },
     comments: [],
     username: "carlsmith",
-    createdAt: formatDate(),
+    createdAt: "2022-01-26T10:55:06+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -27,7 +27,7 @@ export const posts = [
     mediaURL:
       "https://res.cloudinary.com/dtrjdcrme/image/upload/v1647014336/ecommerce/chocolatecake4.webp",
     likes: {
-      likeCount: 0,
+      likeCount: 2,
       likedBy: [],
       dislikedBy: [],
     },
@@ -52,7 +52,7 @@ export const posts = [
       },
     ],
     username: "adarshbalika",
-    createdAt: formatDate(),
+    createdAt: "2022-03-06T10:55:06+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -61,7 +61,7 @@ export const posts = [
     mediaURL:
       "https://res.cloudinary.com/dtrjdcrme/image/upload/v1652188492/upload-socialmedia/cakegif_q11mfm.webp",
     likes: {
-      likeCount: 0,
+      likeCount: 1,
       likedBy: [],
       dislikedBy: [],
     },
@@ -78,6 +78,111 @@ export const posts = [
     ],
     username: "janedoe",
     createdAt: formatDate(),
+    createdAt: "2022-02-10T10:55:06+05:30",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: "IyUlYXTrzZ",
+    content: "Who's up for Pineapple Pastry?",
+    mediaURL:
+      "https://res.cloudinary.com/dtrjdcrme/image/upload/v1647014828/ecommerce/pineapplemuffin1.webp",
+    likes: {
+      likeCount: 10,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [
+      {
+        _id: "6nIffvImxo",
+        username: "sophiajones",
+        text: "Oh! That looks Delicious!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+    username: "romabulani",
+    createdAt: formatDate(),
+    createdAt: "2022-04-10T10:55:06+05:30",
+    updatedAt: formatDate(),
+  },
+
+  {
+    _id: "xhzTkUi2Nt",
+    content: "Nice Weather Today!!",
+    mediaURL: "",
+    likes: {
+      likeCount: 5,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [
+      {
+        _id: "okzxcf",
+        username: "janedoe",
+        text: "I agree!! Feels like we should go for outing. What say?",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+    username: "romabulani",
+    createdAt: formatDate(),
+    createdAt: "2022-01-10T10:55:06+05:30",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: "Ie92xOSVeU",
+    content:
+      "Check out this amazing video from BakinZone https://bakinzone.netlify.app/videos/qtlhdIfojmc",
+    mediaURL: "",
+    likes: {
+      likeCount: 1,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [
+      {
+        _id: "6fgd534s",
+        username: "janedoe",
+        text: "Yes! I am also learning from there!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+    username: "alexmaxwell",
+    createdAt: formatDate(),
+    createdAt: "2022-04-12T10:55:06+05:30",
+    updatedAt: formatDate(),
+  },
+
+  {
+    _id: "xhzTkUyfNt",
+    content: "Believe in yourself! Rest all will fall in place.",
+    mediaURL: "",
+    likes: {
+      likeCount: 2,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [
+      {
+        _id: "unImWvIzbf",
+        username: "romabulani",
+        text: "So True!!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+    username: "sophiajones",
+    createdAt: formatDate(),
+    createdAt: "2022-05-15T10:55:06+05:30",
     updatedAt: formatDate(),
   },
 ];
