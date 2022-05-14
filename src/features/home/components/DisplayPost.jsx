@@ -17,11 +17,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBookmark,
-  faComment,
-  faHeart,
-} from "@fortawesome/free-regular-svg-icons";
+import { faBookmark, faHeart } from "@fortawesome/free-regular-svg-icons";
 import { displayCardStyle, fontAwesomeIconStyle, postCardStyle } from "styles";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,7 +27,7 @@ import { EditPostModal } from "./EditPostModal";
 import { removeBookmark, addBookmark, CommentModal } from "features";
 import { toast } from "react-toastify";
 
-function DisplayPost({ post, singlePage }) {
+function DisplayPost({ post }) {
   const { content, mediaURL, username, createdAt } = post;
   const [userDetails, setUserDetails] = useState(null);
   const { users } = useSelector((state) => state.users);
@@ -41,10 +37,10 @@ function DisplayPost({ post, singlePage }) {
     (state) => state.authentication
   );
   const { postStatus } = useSelector((state) => state.posts);
-  useEffect(
-    () => setUserDetails(users.filter((user) => user.username === username)[0]),
-    [username, users]
-  );
+  useEffect(() => {
+    if (users.length > 0)
+      setUserDetails(users.filter((user) => user.username === username)[0]);
+  }, [users, username]);
 
   // On Click Functions
   const deletePostClickHandler = async () => {
@@ -74,9 +70,9 @@ function DisplayPost({ post, singlePage }) {
   };
 
   const copyHandler = () => {
-    if (singlePage) navigator.clipboard.writeText(`${window.location.href}`);
-    else
-      navigator.clipboard.writeText(`${window.location.href}post/${post._id}`);
+    navigator.clipboard.writeText(
+      `https://bakingram.netlify.app/post/${post._id}`
+    );
     toast.info("Link Copied. Start sharing!");
   };
 
@@ -84,143 +80,137 @@ function DisplayPost({ post, singlePage }) {
     <>
       {userDetails && (
         <Flex {...postCardStyle} {...displayCardStyle}>
-          <Flex w="100%" marginTop="1" padding="2">
-            <VStack width="100%">
-              <Flex
-                alignSelf="flex-start"
-                flexWrap="wrap"
-                alignItems="center"
-                columnGap="1"
-                width="90%"
-              >
-                <Link to={`/profile/${username}`}>
-                  <Flex>
-                    <Avatar
-                      src={userDetails.avatarUrl}
-                      alt="profile-image"
-                      size="md"
-                      marginRight="2"
-                      display="block"
-                      name={userDetails.firstName}
-                    />
-                    <Flex flexDirection="column">
-                      <Flex columnGap="10px">
-                        <Text fontWeight="bold">
-                          {`${userDetails.firstName} ${userDetails.lastName}`}
-                        </Text>
-                        <Text fontSize="sm" alignSelf="center">
-                          {` ${new Date(createdAt)
-                            .toDateString()
-                            .split(" ")
-                            .slice(1, 3)
-                            .join(" ")}`}
-                        </Text>
-                      </Flex>
-                      <Text fontSize="sm"> @{username}</Text>{" "}
-                    </Flex>
+          <Flex
+            alignSelf="flex-start"
+            flexWrap="wrap"
+            alignItems="center"
+            columnGap="1"
+            width="90%"
+          >
+            <Link to={`/profile/${username}`}>
+              <Flex>
+                <Avatar
+                  src={userDetails.avatarUrl}
+                  alt="profile-image"
+                  size="md"
+                  marginRight="2"
+                  display="block"
+                  name={userDetails.firstName}
+                />
+                <Flex flexDirection="column">
+                  <Flex columnGap="10px">
+                    <Text fontWeight="bold">
+                      {`${userDetails.firstName} ${userDetails.lastName}`}
+                    </Text>
+                    <Text fontSize="sm" alignSelf="center">
+                      {` ${new Date(createdAt)
+                        .toDateString()
+                        .split(" ")
+                        .slice(1, 3)
+                        .join(" ")}`}
+                    </Text>
                   </Flex>
-                </Link>
-
-                {authUser.username === userDetails.username && (
-                  <Menu>
-                    <MenuButton
-                      pos="absolute"
-                      right="8"
-                      bg="transparent"
-                      color="gray.700"
-                      _hover={{ bg: "transparent" }}
-                    >
-                      <FontAwesomeIcon
-                        icon="ellipsis-h"
-                        {...fontAwesomeIconStyle}
-                      />
-                    </MenuButton>
-                    <MenuList minW="8rem">
-                      <MenuGroup>
-                        <EditPostModal post={post} />
-                        <MenuDivider />
-                        <MenuItem
-                          _hover={{ bg: "gray.300" }}
-                          bg="inherit"
-                          fontSize="md"
-                          onClick={(e) => deletePostClickHandler(e)}
-                        >
-                          Delete
-                        </MenuItem>
-                      </MenuGroup>
-                    </MenuList>
-                  </Menu>
-                )}
-              </Flex>
-              <Link to={`/post/${post._id}`}>
-                <Text width="100%">{content}</Text>
-                {mediaURL && mediaURL.split("/")[4] === "image" ? (
-                  <Image
-                    src={mediaURL}
-                    maxHeight="20rem"
-                    objectFit="fill"
-                    marginLeft="0"
-                    width="100%"
-                  />
-                ) : (
-                  mediaURL && (
-                    <video controls>
-                      <source src={mediaURL} />
-                    </video>
-                  )
-                )}
-              </Link>
-
-              <Divider />
-              <HStack alignSelf="flex-start">
-                <Flex alignItems="center" flexDirection="col">
-                  <IconButton
-                    variant="iconButton"
-                    disabled={postStatus === "pending"}
-                    icon={
-                      likedByUser() ? (
-                        <FontAwesomeIcon
-                          icon="heart"
-                          style={{ color: "#E53E3E" }}
-                        />
-                      ) : (
-                        <FontAwesomeIcon icon={faHeart} />
-                      )
-                    }
-                    onClick={(e) => likeClickHandler()}
-                  />
-                  <span>
-                    {post.likes.likedBy.length > 0 && post.likes.likedBy.length}
-                  </span>
+                  <Text fontSize="sm"> @{username}</Text>{" "}
                 </Flex>
+              </Flex>
+            </Link>
 
-                <IconButton
-                  variant="iconButton"
-                  disabled={bookmarkStatus === "pending"}
-                  icon={
-                    bookmarkedByUser() ? (
-                      <FontAwesomeIcon icon="bookmark" />
-                    ) : (
-                      <FontAwesomeIcon icon={faBookmark} />
-                    )
-                  }
-                  onClick={(e) => bookmarkClickHandler(e)}
-                />
-                <Box>
-                  <CommentModal postId={post._id} />
-                  {post.comments.length > 0 && (
-                    <span>{post.comments.length}</span>
-                  )}
-                </Box>
-
-                <IconButton
-                  variant="iconButton"
-                  icon={<FontAwesomeIcon icon="share-alt" />}
-                  onClick={copyHandler}
-                />
-              </HStack>
-            </VStack>
+            {authUser.username === userDetails.username && (
+              <Menu>
+                <MenuButton
+                  pos="absolute"
+                  right="8"
+                  bg="transparent"
+                  color="gray.700"
+                  _hover={{ bg: "transparent" }}
+                >
+                  <FontAwesomeIcon
+                    icon="ellipsis-h"
+                    {...fontAwesomeIconStyle}
+                  />
+                </MenuButton>
+                <MenuList minW="8rem">
+                  <MenuGroup>
+                    <EditPostModal post={post} />
+                    <MenuDivider />
+                    <MenuItem
+                      _hover={{ bg: "gray.300" }}
+                      bg="inherit"
+                      fontSize="md"
+                      onClick={(e) => deletePostClickHandler(e)}
+                    >
+                      Delete
+                    </MenuItem>
+                  </MenuGroup>
+                </MenuList>
+              </Menu>
+            )}
           </Flex>
+          <Link to={`/post/${post._id}`}>
+            <Text width="100%" alignSelf="flex-start" py="2" my="8px">
+              {content}
+            </Text>
+            {mediaURL && mediaURL.split("/")[4] === "image" ? (
+              <Image
+                src={mediaURL}
+                maxHeight="20rem"
+                objectFit="fill"
+                marginLeft="0"
+                width="100%"
+              />
+            ) : (
+              mediaURL && (
+                <video controls>
+                  <source src={mediaURL} />
+                </video>
+              )
+            )}
+          </Link>
+
+          <Divider />
+          <HStack alignSelf="flex-start">
+            <Flex alignItems="center" flexDirection="col">
+              <IconButton
+                variant="iconButton"
+                disabled={postStatus === "pending"}
+                icon={
+                  likedByUser() ? (
+                    <FontAwesomeIcon
+                      icon="heart"
+                      style={{ color: "#E53E3E" }}
+                    />
+                  ) : (
+                    <FontAwesomeIcon icon={faHeart} />
+                  )
+                }
+                onClick={(e) => likeClickHandler()}
+              />
+              <span>{post.likes.likeCount > 0 && post.likes.likeCount}</span>
+            </Flex>
+
+            <IconButton
+              variant="iconButton"
+              disabled={bookmarkStatus === "pending"}
+              icon={
+                bookmarkedByUser() ? (
+                  <FontAwesomeIcon icon="bookmark" />
+                ) : (
+                  <FontAwesomeIcon icon={faBookmark} />
+                )
+              }
+              onClick={(e) => bookmarkClickHandler(e)}
+            />
+            <Box>
+              <CommentModal postId={post._id} />
+              {post.comments.length > 0 && <span>{post.comments.length}</span>}
+            </Box>
+
+            <IconButton
+              variant="iconButton"
+              icon={<FontAwesomeIcon icon="share-alt" />}
+              onClick={copyHandler}
+            />
+          </HStack>
         </Flex>
       )}
     </>
