@@ -29,10 +29,12 @@ function SignupForm() {
   const { formData, formDispatch, errorData, errorDispatch, signUpHandler } =
     useSignupHandler();
   const location = useLocation();
+  const { authToken } = useSelector((state) => state.authentication);
 
   useEffect(() => {
-    navigate(location?.state?.from?.pathname || "/", { replace: true });
-  }, []);
+    authToken &&
+      navigate(location?.state?.from?.pathname || "/", { replace: true });
+  }, [authToken]);
 
   return (
     <Flex justifyContent="center">
@@ -243,7 +245,7 @@ function SignupForm() {
             textDecoration="underline"
             fontSize="1.1rem"
             onClick={() =>
-              navigate("/signup", { state: location.state, replace: true })
+              navigate("/login", { state: location.state, replace: true })
             }
           >
             Log In here
