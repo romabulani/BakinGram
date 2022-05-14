@@ -6,12 +6,12 @@ import {
   Profile,
   HeroContent,
   Bookmarks,
-  Notifications,
   LoginForm,
   SignupForm,
   PrivateRoute,
   Explore,
   SinglePostPage,
+  getUsers,
 } from "features";
 import { NotFound, ScrollToTop } from "components";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +26,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getPosts());
+    dispatch(getUsers());
   }, [authToken]);
 
   return (
@@ -59,14 +60,6 @@ function App() {
           element={
             <PrivateRoute>
               <Bookmarks />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/notifications"
-          element={
-            <PrivateRoute>
-              <Notifications />
             </PrivateRoute>
           }
         />
