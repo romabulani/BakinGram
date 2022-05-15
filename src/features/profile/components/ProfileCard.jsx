@@ -11,7 +11,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { postCardStyle } from "styles";
+import { flexMiddleContainerStyle, postCardStyle } from "styles";
 import { UpdateProfileForm, logoutUser } from "features";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -63,82 +63,95 @@ function ProfileCard() {
   return (
     <>
       {profileDetails && (
-        <Flex
-          {...postCardStyle}
-          boxShadow="none"
-          w={{ base: "90vw", md: "30rem" }}
-        >
-          <Flex w="100%" marginTop="1" padding="2">
-            <Avatar
-              src={profileDetails?.avatarUrl}
-              size="lg"
-              name={profileDetails.firstName}
-            />
-            <Flex w="100%" m="2" flexDirection="column" rowGap="1">
-              <Flex justifyContent="space-between" flexWrap="wrap">
-                <Flex flexDirection="column">
-                  <Text fontWeight="bold">{`${profileDetails.firstName} ${profileDetails.lastName}`}</Text>
-                  <Text>{`@${profileDetails.username}`}</Text>
-                </Flex>
-                {authUser.username === profileDetails.username && (
-                  <Flex alignItems="center">
-                    <UpdateProfileForm />
-                    <Tooltip label="Logout" aria-label="A tooltip">
-                      <IconButton
-                        variant="iconButton"
-                        icon={<FontAwesomeIcon icon="sign-out" />}
-                        onClick={() => dispatch(logoutUser())}
-                      />
-                    </Tooltip>
+        <>
+          <Flex
+            {...postCardStyle}
+            boxShadow="none"
+            w={{ base: "90vw", md: "85%", lg: "30rem" }}
+          >
+            <Flex w="100%" marginTop="1" padding="2">
+              <Avatar
+                src={profileDetails?.avatarUrl}
+                size="lg"
+                name={profileDetails.firstName}
+              />
+              <Flex w="100%" m="2" flexDirection="column" rowGap="1">
+                <Flex justifyContent="space-between" flexWrap="wrap">
+                  <Flex flexDirection="column">
+                    <Text fontWeight="bold">{`${profileDetails.firstName} ${profileDetails.lastName}`}</Text>
+                    <Text>{`@${profileDetails.username}`}</Text>
                   </Flex>
-                )}
-                {authUser.username !== profileDetails.username && (
-                  <Button
-                    variant="outline"
-                    h="2rem"
-                    onClick={followUnfollowClickHandler}
-                    disabled={followStatus === "pending"}
+                  {authUser.username === profileDetails.username && (
+                    <Flex alignItems="center">
+                      <UpdateProfileForm />
+                      <Tooltip label="Logout" aria-label="A tooltip">
+                        <IconButton
+                          variant="iconButton"
+                          icon={<FontAwesomeIcon icon="sign-out" />}
+                          onClick={() => dispatch(logoutUser())}
+                        />
+                      </Tooltip>
+                    </Flex>
+                  )}
+                  {authUser.username !== profileDetails.username && (
+                    <Button
+                      variant="outline"
+                      h="2rem"
+                      onClick={followUnfollowClickHandler}
+                      disabled={followStatus === "pending"}
+                    >
+                      {isFollowed() ? "Following" : "Follow"}
+                    </Button>
+                  )}
+                </Flex>
+                <Text>{profileDetails.bio}</Text>
+                <Flex justifyContent="space-between" flexWrap="wrap">
+                  <Link
+                    href={profileDetails.website}
+                    isExternal
+                    target="_blank"
                   >
-                    {isFollowed() ? "Following" : "Follow"}
-                  </Button>
-                )}
-              </Flex>
-              <Text>{profileDetails.bio}</Text>
-              <Flex justifyContent="space-between" flexWrap="wrap">
-                <Link href={profileDetails.website} isExternal target="_blank">
-                  {profileDetails.website}
-                </Link>
-                <Box>
-                  <FontAwesomeIcon icon="calendar" color="#718096" />
-                  <span style={{ color: "#718096" }}>{` ${new Date(
-                    profileDetails.createdAt
-                  )
-                    .toDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })
-                    .slice(4)}`}</span>
-                </Box>
-              </Flex>
-              <Flex justifyContent="space-between" flexWrap="wrap">
-                <Button variant="link">{postsDetails.length} posts</Button>
-                <FollowersModal followersList={profileDetails.followers} />
-                <FollowingModal followingList={profileDetails.following} />
+                    {profileDetails.website}
+                  </Link>
+                  <Box>
+                    <FontAwesomeIcon icon="calendar" color="#718096" />
+                    <span style={{ color: "#718096" }}>{` ${new Date(
+                      profileDetails.createdAt
+                    )
+                      .toDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })
+                      .slice(4)}`}</span>
+                  </Box>
+                </Flex>
+                <Flex justifyContent="space-between" flexWrap="wrap">
+                  <Button variant="link">{postsDetails.length} posts</Button>
+                  <FollowersModal followersList={profileDetails.followers} />
+                  <FollowingModal followingList={profileDetails.following} />
+                </Flex>
               </Flex>
             </Flex>
+            <Divider />
           </Flex>
-          <Divider />
-          {postsDetails.length > 0 ? (
-            postsDetails.map((post) => (
-              <DisplayPost key={post._id} post={post} />
-            ))
-          ) : (
-            <Heading textAlign="center" pt="4">
-              No Posts Yet!
-            </Heading>
-          )}
-        </Flex>
+          <Flex
+            w="100%"
+            justifyContent="center"
+            alignItems="center"
+            flexDir="column"
+          >
+            {postsDetails.length > 0 ? (
+              postsDetails.map((post) => (
+                <DisplayPost key={post._id} post={post} />
+              ))
+            ) : (
+              <Heading textAlign="center" pt="4">
+                No Posts Yet!
+              </Heading>
+            )}
+          </Flex>
+        </>
       )}
     </>
   );

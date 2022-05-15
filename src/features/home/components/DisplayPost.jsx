@@ -90,7 +90,11 @@ function DisplayPost({ post }) {
             <Link to={`/profile/${username}`}>
               <Flex>
                 <Avatar
-                  src={userDetails.avatarUrl}
+                  src={
+                    userDetails.username === authUser.username
+                      ? authUser.avatarUrl
+                      : userDetails.avatarUrl
+                  }
                   alt="profile-image"
                   size="md"
                   marginRight="2"
