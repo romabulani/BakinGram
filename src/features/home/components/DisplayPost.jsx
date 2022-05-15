@@ -36,7 +36,7 @@ function DisplayPost({ post }) {
   const { authToken, authUser, bookmarkStatus } = useSelector(
     (state) => state.authentication
   );
-  const { postStatus } = useSelector((state) => state.posts);
+  const { likeDislikeStatus } = useSelector((state) => state.posts);
   useEffect(() => {
     if (users.length > 0)
       setUserDetails(users.filter((user) => user.username === username)[0]);
@@ -172,7 +172,7 @@ function DisplayPost({ post }) {
             <Flex alignItems="center" flexDirection="col">
               <IconButton
                 variant="iconButton"
-                disabled={postStatus === "pending"}
+                disabled={likeDislikeStatus === "pending"}
                 icon={
                   likedByUser() ? (
                     <FontAwesomeIcon
