@@ -43,6 +43,7 @@ $ npm start
 - User can share the link of post with others.
 - Loader is shown while the posts are fetched.
 - Alerts in the app to notify the users about success/failure operations.
+- Toogle between Light and Dark Themes.
 - All the screens are Responsive.
 
 ## Tech Stack and Tools
