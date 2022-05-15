@@ -4,7 +4,7 @@ import { Flex, Avatar, Text, Button, Divider } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { followUser } from "features";
 
-function SuggestionCard({ user, followButton, onClose }) {
+function UserCard({ user, followButton, onClose, gap }) {
   const dispatch = useDispatch();
   const { authToken } = useSelector((state) => state.authentication);
   return (
@@ -13,7 +13,7 @@ function SuggestionCard({ user, followButton, onClose }) {
         height="fit-content"
         mt="4"
         justifyContent="flex-start"
-        columnGap="2px"
+        columnGap={gap ? gap : "2px"}
         alignItems="center"
         pb="1"
       >
@@ -60,4 +60,4 @@ function SuggestionCard({ user, followButton, onClose }) {
   );
 }
 
-export { SuggestionCard };
+export { UserCard };
