@@ -1,7 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Flex,
-  VStack,
   HStack,
   Text,
   Divider,
@@ -130,7 +129,8 @@ function DisplayPost({ post }) {
                 >
                   <FontAwesomeIcon
                     icon="ellipsis-h"
-                    {...fontAwesomeIconStyle}
+                    size="2x"
+                    style={{ ...fontAwesomeIconStyle, padding: "5px" }}
                   />
                 </MenuButton>
                 <MenuList minW="8rem">

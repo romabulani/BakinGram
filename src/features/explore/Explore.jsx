@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import { Navigation, Sidebar } from "components";
-import { DisplayPost, Suggestions } from "features";
+import { DisplayPost, Footer, Suggestions } from "features";
 import { useSelector } from "react-redux";
 import {
   flexMiddleContainerStyle,
@@ -20,6 +20,7 @@ function Explore() {
         </Flex>
         <Suggestions />
       </Flex>
+      <Footer />
     </>
   );
 }

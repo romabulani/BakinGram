@@ -7,21 +7,6 @@ import { formatDate } from "../utils/authUtils";
 
 export const posts = [
   {
-    _id: "siFFxfYI1s",
-    content: "Started my Baking journey! Look what I made.",
-    mediaURL:
-      "https://res.cloudinary.com/dtrjdcrme/video/upload/v1652188886/upload-socialmedia/oikev6eomsgahnvxcijd.mp4",
-    likes: {
-      likeCount: 0,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    comments: [],
-    username: "carlsmith",
-    createdAt: "2022-01-26T10:55:06+05:30",
-    updatedAt: formatDate(),
-  },
-  {
     _id: "3XHvLP9kC",
     content: "Yayy! Its my Birthday Today. Made this cake for myself!",
     mediaURL:
@@ -79,6 +64,22 @@ export const posts = [
     username: "janedoe",
     createdAt: formatDate(),
     createdAt: "2022-02-10T10:55:06+05:30",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: "siFFxfYI1s",
+    content: "Started my Baking journey! Look what I made.",
+    mediaURL:
+      "https://res.cloudinary.com/dtrjdcrme/video/upload/v1652188886/upload-socialmedia/oikev6eomsgahnvxcijd.mp4",
+    mediaURL: "",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [],
+    username: "carlsmith",
+    createdAt: "2022-01-26T10:55:06+05:30",
     updatedAt: formatDate(),
   },
   {

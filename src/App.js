@@ -36,7 +36,7 @@ function App() {
       {postStatus === "pending" ? (
         <Loader />
       ) : (
-        <Flex color={color} bg={bg} flexDir="column" h="100vh">
+        <Flex color={color} bg={bg} flexDir="column" minH="100vh">
           <ScrollToTop />
           <ToastContainer
             theme={useColorModeValue("light", "dark")}
