@@ -5,7 +5,7 @@ import {
   Button,
   Divider,
 } from "@chakra-ui/react";
-import { SuggestionCard } from "./SuggestionCard";
+import { UserCard } from "./UserCard";
 import { suggestionContainerStyle } from "styles";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -65,7 +65,7 @@ function Suggestions() {
         .map(
           (user) =>
             user.username !== authUser.username && (
-              <SuggestionCard user={user} key={user._id} followButton={true} />
+              <UserCard user={user} key={user._id} followButton={true} />
             )
         )}
     </Flex>

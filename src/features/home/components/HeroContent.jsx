@@ -5,6 +5,7 @@ import {
   Heading,
   useColorModeValue,
   Divider,
+  filter,
 } from "@chakra-ui/react";
 import { NewPost, DisplayPost, Suggestions } from "features";
 import {
@@ -58,7 +59,7 @@ function HeroContent() {
         <Flex {...flexMiddleContainerStyle}>
           <Box
             display={{ base: "none", md: "block" }}
-            width={{ md: "95%", lg: "30rem" }}
+            width={{ md: "85%", lg: "30rem" }}
             alignSelf="center"
             p="0"
             m="0"

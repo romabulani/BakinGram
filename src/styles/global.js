@@ -8,7 +8,7 @@ export const postCardStyle = {
 };
 
 export const displayCardStyle = {
-  w: { base: "90vw", md: "95%", lg: "30rem" },
+  w: { base: "90vw", md: "85%", lg: "30rem" },
   mt: "4",
   pos: "relative",
   boxShadow: "rgb(0 0 0 / 5%) 0px 0px 10px 4px",
@@ -17,6 +17,7 @@ export const displayCardStyle = {
 export const flexMiddleContainerStyle = {
   flexDirection: "column",
   alignItems: "center",
+  flexGrow: "1",
   w: { base: "100%", md: "40%", lg: "62.5%" },
 };
 
@@ -31,12 +32,12 @@ export const sidebarStyle = {
 export const suggestionContainerStyle = {
   flexDirection: "column",
   paddingRight: "4",
-  h: "calc(100vh - 3.5rem)",
+  h: "calc(100vh - 3rem)",
   py: "4",
   paddingLeft: "4",
   position: "sticky",
   right: "4",
-  top: "3.5rem",
+  top: "3rem",
   w: "18rem",
   borderLeft: "1px",
   display: { base: "none", md: "block" },
@@ -45,7 +46,7 @@ export const suggestionContainerStyle = {
 
 export const flexMiddleOuterContainerStyle = {
   width: "100%",
-  minHeight: "100vh",
+  flexGrow: "1",
   justifyContent: {
     base: "center",
     md: "space-between",

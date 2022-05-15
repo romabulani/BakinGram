@@ -1,4 +1,4 @@
-import { SuggestionCard } from "features";
+import { UserCard } from "features";
 
 import {
   useDisclosure,
@@ -35,7 +35,7 @@ function FollowersModal({ followersList }) {
           <ModalBody justifyContent="space-between" pb="2rem">
             {followersList.length > 0 ? (
               followersList.map((user) => (
-                <SuggestionCard user={user} onClose={onClose} key={user._id} />
+                <UserCard user={user} onClose={onClose} key={user._id} />
               ))
             ) : (
               <Text textAlign="center">No Followers Yet</Text>

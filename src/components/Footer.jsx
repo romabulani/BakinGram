@@ -11,7 +11,6 @@ function Footer() {
       bg={useColorModeValue("white.900", "gray.900")}
       marginTop="1rem"
       p="4"
-      zIndex="6"
       borderTop="1px solid"
       rowGap="3"
       borderColor={useColorModeValue("gray.300", "gray.700")}

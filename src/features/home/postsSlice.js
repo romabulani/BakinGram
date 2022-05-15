@@ -157,6 +157,8 @@ const postsSlice = createSlice({
     posts: [],
     userPosts: [],
     postStatus: "idle",
+    likeDislikeStatus: "idle",
+    commentStatus: "idle",
     postSorting: "default",
     postError: null,
   },
@@ -171,9 +173,14 @@ const postsSlice = createSlice({
     },
     [getPosts.fulfilled]: (state, action) => {
       state.posts = action.payload;
+      state.postStatus = "fulfilled";
+    },
+    [getPosts.pending]: (state, action) => {
+      state.postStatus = "pending";
     },
     [getPosts.rejected]: (state, action) => {
       state.postError = action.payload;
+      state.postStatus = "idle";
     },
     [addPost.fulfilled]: (state, action) => {
       state.posts = action.payload;
@@ -195,58 +202,58 @@ const postsSlice = createSlice({
     },
     [likePost.fulfilled]: (state, action) => {
       state.posts = action.payload;
-      state.postStatus = "fulfilled";
+      state.likeDislikeStatus = "fulfilled";
     },
     [likePost.pending]: (state, action) => {
-      state.postStatus = "pending";
+      state.likeDislikeStatus = "pending";
     },
     [likePost.rejected]: (state, action) => {
       state.postError = action.payload;
-      state.postStatus = "idle";
+      state.likeDislikeStatus = "idle";
     },
     [dislikePost.fulfilled]: (state, action) => {
       state.posts = action.payload;
-      state.postStatus = "fulfilled";
+      state.likeDislikeStatus = "fulfilled";
     },
     [dislikePost.pending]: (state, action) => {
-      state.postStatus = "pending";
+      state.likeDislikeStatus = "pending";
     },
     [dislikePost.rejected]: (state, action) => {
       state.postError = action.payload;
-      state.postStatus = "idle";
+      state.likeDislikeStatus = "idle";
     },
     [addComment.fulfilled]: (state, action) => {
       state.posts = action.payload;
-      state.postStatus = "fulfilled";
+      state.commentStatus = "fulfilled";
     },
     [addComment.pending]: (state, action) => {
-      state.postStatus = "pending";
+      state.commentStatus = "pending";
     },
     [addComment.rejected]: (state, action) => {
       state.postError = action.payload;
-      state.postStatus = "idle";
+      state.commentStatus = "idle";
     },
     [editComment.fulfilled]: (state, action) => {
       state.posts = action.payload;
-      state.postStatus = "fulfilled";
+      state.commentStatus = "fulfilled";
     },
     [editComment.pending]: (state, action) => {
-      state.postStatus = "pending";
+      state.commentStatus = "pending";
     },
     [editComment.rejected]: (state, action) => {
       state.postError = action.payload;
-      state.postStatus = "idle";
+      state.commentStatus = "idle";
     },
     [deleteComment.fulfilled]: (state, action) => {
       state.posts = action.payload;
-      state.postStatus = "fulfilled";
+      state.commentStatus = "fulfilled";
     },
     [deleteComment.pending]: (state, action) => {
-      state.postStatus = "pending";
+      state.commentStatus = "pending";
     },
     [deleteComment.rejected]: (state, action) => {
       state.postError = action.payload;
-      state.postStatus = "idle";
+      state.commentStatus = "idle";
     },
   },
 });

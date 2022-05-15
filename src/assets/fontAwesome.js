@@ -25,6 +25,7 @@ import {
   faCompass,
   faFire,
   faSort,
+  faClose,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -51,7 +52,8 @@ library.add(
   faHeart,
   faCompass,
   faFire,
-  faSort
+  faSort,
+  faClose
 );
 
 export { library };
