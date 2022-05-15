@@ -32,10 +32,7 @@ function DisplayPost({ post }) {
   const { users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const { deleteMedia } = useMedia();
-  const { authToken, authUser, bookmarkStatus } = useSelector(
-    (state) => state.authentication
-  );
-  const { likeDislikeStatus } = useSelector((state) => state.posts);
+  const { authToken, authUser } = useSelector((state) => state.authentication);
   useEffect(() => {
     if (users.length > 0)
       setUserDetails(users.filter((user) => user.username === username)[0]);
@@ -176,7 +173,6 @@ function DisplayPost({ post }) {
             <Flex alignItems="center" flexDirection="col">
               <IconButton
                 variant="iconButton"
-                disabled={likeDislikeStatus === "pending"}
                 icon={
                   likedByUser() ? (
                     <FontAwesomeIcon
@@ -194,7 +190,6 @@ function DisplayPost({ post }) {
 
             <IconButton
               variant="iconButton"
-              disabled={bookmarkStatus === "pending"}
               icon={
                 bookmarkedByUser() ? (
                   <FontAwesomeIcon icon="bookmark" />
