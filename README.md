@@ -2,7 +2,7 @@
 <div align="center">
   <img src="https://res.cloudinary.com/dtrjdcrme/image/upload/v1649999358/quiz/logo_an0oti.webp" height="100" width="100" alt="logo"/>
   <h1>Bakin Gram</h1>
-    <p>Bakin Gram is a Social Media App where you can share the posts and learnings</p>
+    <p>Bakin Gram is a Social Media App where you can share posts and learnings.</p>
  </div>
 
 ## How to run the app locally?
