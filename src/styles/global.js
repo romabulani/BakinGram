@@ -61,7 +61,7 @@ export const fontAwesomeIconStyle = {
 
 export const sortButtonsContainerStyle = {
   position: "sticky",
-  top: "3.5rem",
+  top: "3.2rem",
   zIndex: "7",
   width: "96vw",
   justifyContent: "space-around",
