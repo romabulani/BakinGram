@@ -12,6 +12,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fontAwesomeIconStyle } from "styles";
 import { useSelector } from "react-redux";
+import { SearchBar } from "features";
 
 function Navigation() {
   const { toggleColorMode, colorMode } = useColorMode();
@@ -27,7 +28,7 @@ function Navigation() {
       pos="sticky"
       bg={useColorModeValue("white.900", "gray.900")}
       top="0"
-      zIndex="2"
+      zIndex="8"
     >
       <Flex alignItems="flex-end">
         <Link to="/">
@@ -63,18 +64,9 @@ function Navigation() {
         height="70%"
         mx="1rem"
         px="4"
+        textAlign="center"
       >
-        <Input
-          type="search"
-          border="none"
-          placeholder="Search User.."
-          variant="unstyled"
-          width="85%"
-        />
-        <FontAwesomeIcon
-          icon="magnifying-glass"
-          style={{ position: "absolute", right: "8px", top: "10px" }}
-        />
+        <SearchBar />
       </Flex>
       <HStack spacing="2" marginLeft={{ base: "2rem", md: "0" }}>
         <FontAwesomeIcon
