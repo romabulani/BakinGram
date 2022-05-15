@@ -33,7 +33,7 @@ function Sidebar() {
         {...sidebarStyle}
         borderColor={useColorModeValue("gray.300", "gray.700")}
       >
-        <Box pos="sticky" top="3.5rem">
+        <Box pos="sticky" top="3rem">
           <NavLink to="/" style={getActiveStyle}>
             {getNavItem("house", "Home")}
           </NavLink>
@@ -42,6 +42,9 @@ function Sidebar() {
           </NavLink>
           <NavLink to="/bookmarks" style={getActiveStyle}>
             {getNavItem("bookmark", "Bookmarks")}
+          </NavLink>
+          <NavLink to="/liked" style={getActiveStyle}>
+            {getNavItem("heart", "Liked Posts")}
           </NavLink>
           <PostModal />
         </Box>
@@ -54,20 +57,23 @@ function Sidebar() {
         width="100vw"
         justifyContent="space-around"
         alignItems="center"
-        height="2.5rem"
+        height="3rem"
         padding="5px"
         backgroundColor={useColorModeValue("white.900", "gray.900")}
         display={{ base: "flex", md: "none" }}
       >
         <Link to="/">
-          <FontAwesomeIcon icon="home" />
+          <FontAwesomeIcon icon="home" size="lg" />
         </Link>
         <Link to="/explore">
-          <FontAwesomeIcon icon="compass" />
+          <FontAwesomeIcon icon="compass" size="lg" />
         </Link>
         <PostModal />
         <Link to="/bookmarks">
-          <FontAwesomeIcon icon="bookmark" />
+          <FontAwesomeIcon icon="bookmark" size="lg" />
+        </Link>
+        <Link to="/liked">
+          <FontAwesomeIcon icon="heart" size="lg" />
         </Link>
         <Link to={`/profile/${authUser.username}`}>
           <Avatar

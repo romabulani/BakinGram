@@ -31,11 +31,11 @@ function PostModal() {
         variant="iconButton"
         display={{ base: "block", md: "none" }}
         height="1.5rem"
-        bottom="7px"
+        bottom="10px"
         onClick={onOpen}
         color={useColorModeValue("gray.800", "whiteAlpha.800")}
       >
-        <FontAwesomeIcon icon="plus-circle" />
+        <FontAwesomeIcon icon="plus-circle" size="lg" />
       </Button>
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="md" m="2">
         <ModalOverlay />
