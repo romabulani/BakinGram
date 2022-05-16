@@ -58,7 +58,7 @@ function UpdateProfileForm() {
       )
         .then((response) => response.json())
         .then((json) => {
-          setAvatarUrl(json.url);
+          setAvatarUrl(json.secure_url);
         })
         .catch((error) => {
           console.error(error);

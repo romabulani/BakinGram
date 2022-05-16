@@ -24,7 +24,7 @@ function useMedia() {
         .then((json) => {
           setMediaURL(json.url);
           setDeleteToken(json.delete_token);
-          return [json.url, json.delete_token];
+          return [json.secure_url, json.delete_token];
         })
         .catch((error) => {
           console.error(error);
