@@ -103,7 +103,7 @@ function HeroContent() {
               <DisplayPost key={post._id} post={post} />
             ))
           ) : (
-            <Heading fontSize="lg" width="80%">
+            <Heading fontSize="lg" width="80%" mt="16">
               No Posts to Display! Start Following and Liking your Friends Post
               to get updates on your Feed.
             </Heading>

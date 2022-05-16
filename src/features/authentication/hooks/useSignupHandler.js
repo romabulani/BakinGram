@@ -1,8 +1,10 @@
 import { useReducer } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "features";
+import { toast } from "react-toastify";
 
 function useSignupHandler() {
+  const { users } = useSelector((state) => state.users);
   const initialFormState = {
     firstName: "",
     lastName: "",
@@ -134,11 +136,17 @@ function useSignupHandler() {
 
     return signupFlag;
   };
-  // const { loginHandler } = useLoginHandler();
 
   const signUpHandler = (e) => {
     e.preventDefault();
-    if (checkValidation()) dispatch(signupUser(formData));
+    if (checkValidation()) {
+      const userNameExists = users.find(
+        (currUser) => currUser.username === formData.username
+      );
+      userNameExists
+        ? toast.error("Username is taken!")
+        : dispatch(signupUser(formData));
+    }
   };
 
   return { formData, formDispatch, errorData, errorDispatch, signUpHandler };

@@ -7,6 +7,73 @@ import { formatDate } from "../utils/authUtils";
 
 export const posts = [
   {
+    _id: "xhzTkUi2Nt",
+    content: "Nice Weather Today!!",
+    mediaURL: "",
+    likes: {
+      likeCount: 5,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [
+      {
+        _id: "okzxcf",
+        username: "janedoe",
+        text: "I agree!! Feels like we should go for outing. What say?",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+    username: "romabulani",
+    createdAt: formatDate(),
+    createdAt: "2022-01-10T10:55:06+05:30",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: "siFFxfYI1s",
+    content: "Started my Baking journey! Look what I made.",
+    mediaURL:
+      "https://res.cloudinary.com/dtrjdcrme/video/upload/v1652188886/upload-socialmedia/oikev6eomsgahnvxcijd.mp4",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [],
+    username: "carlsmith",
+    createdAt: "2022-01-26T10:55:06+05:30",
+    updatedAt: formatDate(),
+  },
+
+  {
+    _id: "3XHvLP1fg",
+    content: "I made this cake for my friend's birthday. Check it out",
+    mediaURL:
+      "https://res.cloudinary.com/dtrjdcrme/image/upload/v1652188492/upload-socialmedia/cakegif_q11mfm.webp",
+    likes: {
+      likeCount: 1,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [
+      {
+        _id: "6nImWvImxo",
+        username: "johndoe",
+        text: "That's mouth watering! Could you make one for my Birthday as well?",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+    username: "janedoe",
+    createdAt: formatDate(),
+    createdAt: "2022-02-10T10:55:06+05:30",
+    updatedAt: formatDate(),
+  },
+  {
     _id: "3XHvLP9kC",
     content: "Yayy! Its my Birthday Today. Made this cake for myself!",
     mediaURL:
@@ -41,48 +108,6 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: "3XHvLP1fg",
-    content: "I made this cake for my friend's birthday. Check it out",
-    mediaURL:
-      "https://res.cloudinary.com/dtrjdcrme/image/upload/v1652188492/upload-socialmedia/cakegif_q11mfm.webp",
-    likes: {
-      likeCount: 1,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    comments: [
-      {
-        _id: "6nImWvImxo",
-        username: "johndoe",
-        text: "That's mouth watering! Could you make one for my Birthday as well?",
-        votes: {
-          upvotedBy: [],
-          downvotedBy: [],
-        },
-      },
-    ],
-    username: "janedoe",
-    createdAt: formatDate(),
-    createdAt: "2022-02-10T10:55:06+05:30",
-    updatedAt: formatDate(),
-  },
-  {
-    _id: "siFFxfYI1s",
-    content: "Started my Baking journey! Look what I made.",
-    mediaURL:
-      "https://res.cloudinary.com/dtrjdcrme/video/upload/v1652188886/upload-socialmedia/oikev6eomsgahnvxcijd.mp4",
-    mediaURL: "",
-    likes: {
-      likeCount: 0,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    comments: [],
-    username: "carlsmith",
-    createdAt: "2022-01-26T10:55:06+05:30",
-    updatedAt: formatDate(),
-  },
-  {
     _id: "IyUlYXTrzZ",
     content: "Who's up for Pineapple Pastry?",
     mediaURL:
@@ -109,31 +134,6 @@ export const posts = [
     updatedAt: formatDate(),
   },
 
-  {
-    _id: "xhzTkUi2Nt",
-    content: "Nice Weather Today!!",
-    mediaURL: "",
-    likes: {
-      likeCount: 5,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    comments: [
-      {
-        _id: "okzxcf",
-        username: "janedoe",
-        text: "I agree!! Feels like we should go for outing. What say?",
-        votes: {
-          upvotedBy: [],
-          downvotedBy: [],
-        },
-      },
-    ],
-    username: "romabulani",
-    createdAt: formatDate(),
-    createdAt: "2022-01-10T10:55:06+05:30",
-    updatedAt: formatDate(),
-  },
   {
     _id: "Ie92xOSVeU",
     content:

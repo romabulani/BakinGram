@@ -29,7 +29,7 @@ function Comment({ comment, postId }) {
       setUserDetails(
         users.filter((user) => user.username === comment.username)[0]
       ),
-    []
+    [users]
   );
 
   return (
@@ -46,7 +46,11 @@ function Comment({ comment, postId }) {
             <Link to={`/profile/${userDetails.username}`}>
               <Flex>
                 <Avatar
-                  src={userDetails.avatarUrl}
+                  src={
+                    userDetails.username === authUser.username
+                      ? authUser.avatarUrl
+                      : userDetails.avatarUrl
+                  }
                   alt="profile-image"
                   size="md"
                   marginRight="2"

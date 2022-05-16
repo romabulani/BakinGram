@@ -30,7 +30,7 @@ function LikedPosts() {
         <Sidebar />
         <Flex {...flexMiddleContainerStyle}>
           {postsLikedByUser.length === 0 ? (
-            <Heading size="lg" mt="4">
+            <Heading size="lg" mt="16">
               No Liked Posts Yet
             </Heading>
           ) : (

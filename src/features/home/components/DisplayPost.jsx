@@ -106,7 +106,7 @@ function DisplayPost({ post }) {
                       {` ${new Date(createdAt)
                         .toDateString()
                         .split(" ")
-                        .slice(1, 3)
+                        .slice(1, 4)
                         .join(" ")}`}
                     </Text>
                   </Flex>

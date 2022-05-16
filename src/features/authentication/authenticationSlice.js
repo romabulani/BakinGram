@@ -17,7 +17,7 @@ export const loginUser = createAsyncThunk(
     } catch (error) {
       toast.error(`Incorrect username or password`);
       console.error(error.response.data);
-      return rejectWithValue(error);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -41,11 +41,11 @@ export const editUserProfile = createAsyncThunk(
   async ({ userDetails, authToken }, { rejectWithValue }) => {
     try {
       const resp = await editUser(userDetails, authToken);
-      return resp.data;
+      return resp.data.user;
     } catch (error) {
       toast.error("Couldn't Edit Profile! Please try again.");
       console.error(error.response.data);
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -59,7 +59,7 @@ export const addBookmark = createAsyncThunk(
     } catch (error) {
       toast.error("Couldn't Add to Bookmarks.");
       console.error(error.response.data);
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -73,7 +73,7 @@ export const removeBookmark = createAsyncThunk(
     } catch (error) {
       toast.error("Couldn't remove from Bookmarks.");
       console.error(error.response.data);
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -131,7 +131,7 @@ const authenticationSlice = createSlice({
       state.editProfileStatus = "pending";
     },
     [editUserProfile.fulfilled]: (state, action) => {
-      state.authUser = action.payload.user;
+      state.authUser = action.payload;
     },
     [editUserProfile.rejected]: (state, action) => {
       state.authError = action.payload;

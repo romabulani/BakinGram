@@ -16,7 +16,9 @@ function Explore() {
         <Sidebar />
         <Flex {...flexMiddleContainerStyle}>
           {posts &&
-            posts.map((post) => <DisplayPost key={post._id} post={post} />)}
+            [...posts]
+              .reverse()
+              .map((post) => <DisplayPost key={post._id} post={post} />)}
         </Flex>
         <Suggestions />
       </Flex>

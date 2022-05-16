@@ -21,7 +21,7 @@ export const getPosts = createAsyncThunk(
       return response.data.posts;
     } catch (error) {
       console.error(error.response.data);
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -35,7 +35,7 @@ export const addPost = createAsyncThunk(
     } catch (error) {
       console.error(error.response.data);
       toast.error("Could't add post! Try again");
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -49,7 +49,7 @@ export const editPost = createAsyncThunk(
     } catch (error) {
       console.error(error.response.data);
       toast.error("Could't edit post! Try again");
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -63,7 +63,7 @@ export const deletePost = createAsyncThunk(
     } catch (error) {
       console.error(error.response.data);
       toast.error("Could't delete post! Try again");
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -76,7 +76,7 @@ export const likePost = createAsyncThunk(
       return response.data.posts;
     } catch (error) {
       console.error(error.response.data);
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -89,7 +89,7 @@ export const dislikePost = createAsyncThunk(
       return response.data.posts;
     } catch (error) {
       console.error(error.response.data);
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -107,7 +107,7 @@ export const addComment = createAsyncThunk(
     } catch (error) {
       console.error(error.response.data);
       toast.error("Couldn't add comment!");
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -129,7 +129,7 @@ export const editComment = createAsyncThunk(
     } catch (error) {
       console.error(error.response.data);
       toast.error("Couldn't edit comment!");
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -147,7 +147,7 @@ export const deleteComment = createAsyncThunk(
     } catch (error) {
       console.error(error.response.data);
       toast.error("Couldn't delete comment!");
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -159,7 +159,7 @@ const postsSlice = createSlice({
     postStatus: "idle",
     likeDislikeStatus: "idle",
     commentStatus: "idle",
-    postSorting: "default",
+    postSorting: "latest",
     postError: null,
   },
   reducers: {

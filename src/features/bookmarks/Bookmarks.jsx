@@ -21,7 +21,7 @@ function Bookmarks() {
         <Sidebar />
         <Flex {...flexMiddleContainerStyle}>
           {authUser.bookmarks.length === 0 ? (
-            <Heading size="lg" mt="4">
+            <Heading size="lg" mt="16">
               No Bookmarks Yet
             </Heading>
           ) : (
