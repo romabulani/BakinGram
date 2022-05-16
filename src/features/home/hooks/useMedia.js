@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 function useMedia() {
   const uploadMedia = async (media, setMediaURL, setDeleteToken) => {
     const mediaType = media.type.split("/")[0];
