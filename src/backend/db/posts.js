@@ -74,6 +74,21 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
+    _id: "MTYtVhecCj",
+    content:
+      "You are never too old to set another goal or to dream a new dream.",
+    mediaURL: "",
+    likes: {
+      likeCount: 5,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [],
+    username: "adarshbalika",
+    createdAt: "2022-03-06T10:55:06+05:30",
+    updatedAt: formatDate(),
+  },
+  {
     _id: "3XHvLP9kC",
     content: "Yayy! Its my Birthday Today. Made this cake for myself!",
     mediaURL:
@@ -104,7 +119,51 @@ export const posts = [
       },
     ],
     username: "adarshbalika",
-    createdAt: "2022-03-06T10:55:06+05:30",
+    createdAt: "2022-03-15T10:55:06+05:30",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: "tHaThLyFQh",
+    content:
+      "Life has got all those twists and turns. You’ve got to hold on tight and off you go.",
+    mediaURL: "",
+    likes: {
+      likeCount: 2,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [],
+    username: "adarshbalika",
+    createdAt: "2022-04-06T10:55:06+05:30",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: "G-Gi3lSZP9",
+    content: "When you have a dream, you’ve got to grab it and never let go.",
+    mediaURL: "",
+    likes: {
+      likeCount: 2,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [],
+    username: "adarshbalika",
+    createdAt: "2022-05-06T10:55:06+05:30",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: "GeMUAdi9mh",
+    content:
+      "No matter what people tell you, words and ideas can change the world.",
+    mediaURL: "",
+    likes: {
+      likeCount: 2,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [],
+    username: "adarshbalika",
+    createdAt: "2022-03-06T12:55:06+05:30",
     updatedAt: formatDate(),
   },
   {
