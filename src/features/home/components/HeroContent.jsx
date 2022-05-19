@@ -79,7 +79,7 @@ function HeroContent() {
               variant="outline"
               border="none"
               width="50%"
-              background={
+              backgroundColor={
                 postSorting === "trending"
                   ? useColorModeValue("purple.100", "gray.800")
                   : "none"
@@ -97,7 +97,7 @@ function HeroContent() {
               variant="outline"
               border="none"
               width="50%"
-              background={
+              backgroundColor={
                 postSorting === "latest"
                   ? useColorModeValue("purple.100", "gray.800")
                   : "none"

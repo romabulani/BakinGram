@@ -36,7 +36,7 @@ function Suggestions() {
           <Button
             variant="outline"
             w="7rem"
-            background={
+            backgroundColor={
               postSorting === "trending"
                 ? useColorModeValue("purple.100", "gray.800")
                 : "none"
@@ -49,7 +49,7 @@ function Suggestions() {
           <Button
             variant="outline"
             w="7rem"
-            background={
+            backgroundColor={
               postSorting === "latest"
                 ? useColorModeValue("purple.100", "gray.800")
                 : "none"

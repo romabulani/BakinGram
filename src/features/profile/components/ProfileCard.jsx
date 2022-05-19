@@ -107,15 +107,17 @@ function ProfileCard() {
                     </Button>
                   )}
                 </Flex>
-                <Text>{profileDetails.bio}</Text>
+                {profileDetails.bio && <Text>{profileDetails.bio}</Text>}
                 <Flex justifyContent="space-between" flexWrap="wrap">
-                  <Link
-                    href={profileDetails.website}
-                    isExternal
-                    target="_blank"
-                  >
-                    {profileDetails.website}
-                  </Link>
+                  {profileDetails.website && (
+                    <Link
+                      href={profileDetails.website}
+                      isExternal
+                      target="_blank"
+                    >
+                      {profileDetails.website}
+                    </Link>
+                  )}
                   <Box>
                     <FontAwesomeIcon icon="calendar" color="#718096" />
                     <span style={{ color: "#718096" }}>{` ${new Date(
