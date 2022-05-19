@@ -1,21 +1,15 @@
-import {
-  Flex,
-  Text,
-  useColorModeValue,
-  Button,
-  Divider,
-} from "@chakra-ui/react";
+import { Flex, Text, useColorModeValue, Button } from "@chakra-ui/react";
 import { UserCard } from "./UserCard";
 import { suggestionContainerStyle } from "styles";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "features";
 import { useLocation } from "react-router-dom";
 import { changeSorting } from "../postsSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Suggestions() {
   const { users } = useSelector((state) => state.users);
+  const { postSorting } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
   const { authUser } = useSelector((state) => state.authentication);
   const [suggestions, setSuggestions] = useState([]);
@@ -42,6 +36,11 @@ function Suggestions() {
           <Button
             variant="outline"
             w="7rem"
+            background={
+              postSorting === "trending"
+                ? useColorModeValue("purple.100", "gray.800")
+                : "none"
+            }
             onClick={() => dispatch(changeSorting("trending"))}
           >
             <FontAwesomeIcon icon="fire" style={{ paddingRight: "5px" }} />
@@ -50,10 +49,15 @@ function Suggestions() {
           <Button
             variant="outline"
             w="7rem"
+            background={
+              postSorting === "latest"
+                ? useColorModeValue("purple.100", "gray.800")
+                : "none"
+            }
             onClick={() => dispatch(changeSorting("latest"))}
           >
             <FontAwesomeIcon icon="sort" style={{ paddingRight: "5px" }} />
-            Latest Posts
+            Latest
           </Button>
         </Flex>
       )}

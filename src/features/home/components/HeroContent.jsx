@@ -79,6 +79,11 @@ function HeroContent() {
               variant="outline"
               border="none"
               width="50%"
+              background={
+                postSorting === "trending"
+                  ? useColorModeValue("purple.100", "gray.800")
+                  : "none"
+              }
               onClick={() => dispatch(changeSorting("trending"))}
             >
               <FontAwesomeIcon icon="fire" style={{ paddingRight: "5px" }} />
@@ -92,10 +97,15 @@ function HeroContent() {
               variant="outline"
               border="none"
               width="50%"
+              background={
+                postSorting === "latest"
+                  ? useColorModeValue("purple.100", "gray.800")
+                  : "none"
+              }
               onClick={() => dispatch(changeSorting("latest"))}
             >
               <FontAwesomeIcon icon="sort" style={{ paddingRight: "5px" }} />
-              Latest Posts
+              Latest
             </Button>
           </Flex>
           {followingPosts.length > 0 ? (
