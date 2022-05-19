@@ -25,6 +25,7 @@ import {
 } from "features";
 import { FollowersModal } from "./FollowersModal";
 import { FollowingModal } from "./FollowingModal";
+import { Loader } from "components";
 
 function ProfileCard() {
   const { username } = useParams();
@@ -62,7 +63,9 @@ function ProfileCard() {
 
   return (
     <>
-      {profileDetails && (
+      {profileDetails?.username !== username ? (
+        <Loader />
+      ) : (
         <>
           <Flex
             {...postCardStyle}
