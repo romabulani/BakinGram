@@ -23,7 +23,7 @@ function FollowingModal({ followingList }) {
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="sm" m="2">
         <ModalOverlay />
         <ModalContent w="90%">
-          <ModalHeader>Followers</ModalHeader>
+          <ModalHeader>Following</ModalHeader>
           <ModalCloseButton
             bg="transparent"
             color={useColorModeValue("gray.700", "white.900")}

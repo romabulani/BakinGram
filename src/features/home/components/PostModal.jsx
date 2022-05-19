@@ -31,7 +31,9 @@ function PostModal() {
         variant="iconButton"
         display={{ base: "block", md: "none" }}
         height="1.5rem"
-        bottom="10px"
+        lineHeight="unset"
+        p="0px"
+        w="fit-content"
         onClick={onOpen}
         color={useColorModeValue("gray.800", "whiteAlpha.800")}
       >
@@ -49,7 +51,7 @@ function PostModal() {
               border: "none",
             }}
           />
-          <ModalBody maxW="100%">
+          <ModalBody maxW="100%" m="0" p="0">
             <NewPost width="100%" boxShadow="none" onClose={onClose} />
           </ModalBody>
         </ModalContent>

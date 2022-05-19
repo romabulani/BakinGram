@@ -98,7 +98,7 @@ function CommentModal({ postId, comment, editCommentContent }) {
             }}
           />
           <ModalBody maxW="100%" pt="0" pb="0">
-            <Flex {...postCardStyle} px="4">
+            <Flex {...postCardStyle}>
               <HStack alignItems="flex-start">
                 <Avatar
                   src={authUser.avatarUrl}
@@ -120,7 +120,7 @@ function CommentModal({ postId, comment, editCommentContent }) {
                 />
               </HStack>
               <Divider />
-              <ModalFooter>
+              <ModalFooter pb="0">
                 <Button
                   variant="solidPrimary"
                   borderRadius="full"

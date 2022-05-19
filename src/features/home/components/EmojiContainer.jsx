@@ -27,6 +27,7 @@ function EmojiContainer({ setContent }) {
             variant="iconButton"
             color={useColorModeValue("gray.800", "white.900")}
             paddingBottom="0"
+            pt="0.8rem"
           >
             <FontAwesomeIcon icon="smile" />
           </Button>
