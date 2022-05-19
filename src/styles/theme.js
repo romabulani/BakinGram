@@ -28,8 +28,8 @@ const colors = {
 };
 
 const fonts = {
-  heading: "Roboto",
-  body: "Roboto",
+  heading: "'Inter', sans-serif",
+  body: "'Inter', sans-serif",
 };
 
 const styles = {
