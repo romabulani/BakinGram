@@ -11,6 +11,7 @@ import {
   addCommentToPostInServer,
   editCommentInServer,
   deleteCommentFromServer,
+  getPagedPostsFromServer,
 } from "services";
 
 export const getPosts = createAsyncThunk(
@@ -18,6 +19,19 @@ export const getPosts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await getAllPostsFromServer();
+      return response.data.posts;
+    } catch (error) {
+      console.error(error.response.data);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getPagedPosts = createAsyncThunk(
+  "/posts/getPagedPosts",
+  async ({ pageNum, rejectWithValue }) => {
+    try {
+      const response = await getPagedPostsFromServer(pageNum);
       return response.data.posts;
     } catch (error) {
       console.error(error.response.data);
@@ -156,15 +170,25 @@ const postsSlice = createSlice({
   initialState: {
     posts: [],
     userPosts: [],
+    pagedPosts: [],
+    totalPages: 0,
     postStatus: "idle",
+    pagedPostStatus: "idle",
     likeDislikeStatus: "idle",
     commentStatus: "idle",
     postSorting: "latest",
     postError: null,
+    pageNum: 0,
   },
   reducers: {
     changeSorting: (state, action) => {
       state.postSorting = action.payload;
+    },
+    setPageNum: (state) => {
+      state.pageNum =
+        state.pageNum + 1 > state.totalPages
+          ? state.totalPages
+          : state.pageNum + 1;
     },
   },
   extraReducers: {
@@ -174,6 +198,7 @@ const postsSlice = createSlice({
     [getPosts.fulfilled]: (state, action) => {
       state.posts = action.payload;
       state.postStatus = "fulfilled";
+      state.totalPages = Math.ceil(action.payload.length / 4);
     },
     [getPosts.pending]: (state, action) => {
       state.postStatus = "pending";
@@ -181,6 +206,16 @@ const postsSlice = createSlice({
     [getPosts.rejected]: (state, action) => {
       state.postError = action.payload;
       state.postStatus = "idle";
+    },
+    [getPagedPosts.fulfilled]: (state, action) => {
+      state.pagedPosts = action.payload;
+      state.pagedPostStatus = "fulfilled";
+    },
+    [getPagedPosts.pending]: (state) => {
+      state.pagedPostStatus = "pending";
+    },
+    [getPagedPosts.rejected]: (state) => {
+      state.pagedPostStatus = "idle";
     },
     [addPost.fulfilled]: (state, action) => {
       state.posts = action.payload;
@@ -259,4 +294,4 @@ const postsSlice = createSlice({
 });
 
 export const postsReducer = postsSlice.reducer;
-export const { changeSorting } = postsSlice.actions;
+export const { changeSorting, setPageNum } = postsSlice.actions;

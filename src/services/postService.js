@@ -2,6 +2,9 @@ import axios from "axios";
 
 const getAllPostsFromServer = () => axios.get("/api/posts");
 
+const getPagedPostsFromServer = (pageNum) =>
+  axios.get(`/api/posts/page/${pageNum}`);
+
 const getAllPostsOfUserFromServer = (username) =>
   axios.get(`/api/posts/user/${username}`);
 
@@ -39,4 +42,5 @@ export {
   deletePostFromServer,
   likePostInServer,
   dislikePostInServer,
+  getPagedPostsFromServer,
 };
