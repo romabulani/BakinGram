@@ -45,7 +45,7 @@ export const users = [
     avatarUrl:
       "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651554256/socialmedia/avatars/jane-doe_il3cvx.webp",
     website: "https://romabulani.netlify.app/",
-    createdAt: formatDate(),
+    createdAt: "2022-01-01T10:55:06+05:30",
     updatedAt: formatDate(),
   },
   {
