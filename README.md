@@ -31,7 +31,8 @@ $ npm start
 - User can like or unlike any post.
 - User can add or remove post from bookmarks.
 - Home Page where user can see their posts and the posts of friends followed by user. Trending and Latest Feature where user can sort the posts based on maximum likes and by date.
-- Explore Page where all the posts will be visible.
+- Explore Page where all the posts will be visible. 
+- Infinite scrolling on Explore Page while fetching posts.
 - Liked Page where all the posts liked by user will be visble.
 - Bookmarks Page where all the posts bookmarked by user will be visible.
 - User can follow or unfollow other users.
